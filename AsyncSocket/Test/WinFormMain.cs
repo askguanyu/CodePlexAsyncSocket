@@ -12,12 +12,12 @@ using AsyncSocket;
 
 namespace Test
 {
-    public partial class Form1 : Form
+    public partial class WinFormMain : Form
     {
         public AsyncSocketServer ss;
         private long maxClient;
 
-        public Form1()
+        public WinFormMain()
         {
             InitializeComponent();
             ss = new AsyncSocketServer(new IPEndPoint(IPAddress.Any, Convert.ToInt32(this.numericUpDown1.Value)));
