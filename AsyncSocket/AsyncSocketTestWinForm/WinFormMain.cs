@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AsyncSocket;
 
-namespace Test
+namespace AsyncSocketTestWinForm
 {
     public partial class WinFormMain : Form
     {
