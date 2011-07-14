@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncSocket", "AsyncSocket\AsyncSocket.csproj", "{38DE00C4-F4C7-4355-9902-8221E1763808}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncSocketTestUI", "Test\AsyncSocketTestUI.csproj", "{9DB85C40-E3AB-4D17-8CF7-0B6E24FDB3E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncSocketTestUI", "AsyncSocketTestUI\AsyncSocketTestUI.csproj", "{9DB85C40-E3AB-4D17-8CF7-0B6E24FDB3E1}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -14,9 +14,9 @@ Global
 		SccProjectUniqueName1 = AsyncSocket\\AsyncSocket.csproj
 		SccProjectName1 = AsyncSocket
 		SccLocalPath1 = AsyncSocket
-		SccProjectUniqueName2 = Test\\AsyncSocketTestUI.csproj
-		SccProjectName2 = Test
-		SccLocalPath2 = Test
+		SccProjectUniqueName2 = AsyncSocketTestUI\\AsyncSocketTestUI.csproj
+		SccProjectName2 = AsyncSocketTestUI
+		SccLocalPath2 = AsyncSocketTestUI
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
