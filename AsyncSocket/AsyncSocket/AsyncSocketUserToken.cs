@@ -77,7 +77,7 @@ namespace AsyncSocket
         /// <summary>
         /// Gets received raw Data
         /// </summary>
-        public byte[] Data
+        public byte[] ReceivedRawData
         {
             get
             {
