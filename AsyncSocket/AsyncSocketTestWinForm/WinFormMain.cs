@@ -56,26 +56,28 @@ namespace AsyncSocketTestWinForm
 
         void ss_DataReceived(object sender, AsyncSocketUserToken e)
         {
-            string data = Encoding.Default.GetString(e.ReceivedRawData);
-
             this.Invoke((MethodInvoker)delegate
             {
-                try
-                {
-                    richTextBox1.AppendText(string.Format("----ClientId: {0}, ip: {1}, port: {2}, received: {3}", e.ConnectionId.ToString(), e.EndPoint.Address.ToString(), e.EndPoint.Port.ToString(), data));
-                    richTextBox1.AppendText(Environment.NewLine);
-                    richTextBox1.ScrollToCaret();
-                }
-                catch
-                {
-                }
-
                 if (richTextBox1.TextLength > 536870912)
                 {
                     richTextBox1.Clear();
                 }
-
             });
+
+            //string data = Encoding.Default.GetString(e.ReceivedRawData);
+
+            //this.Invoke((MethodInvoker)delegate
+            //{
+            //    try
+            //    {
+            //        richTextBox1.AppendText(string.Format("----ClientId: {0}, ip: {1}, port: {2}, received: {3}", e.ConnectionId.ToString(), e.EndPoint.Address.ToString(), e.EndPoint.Port.ToString(), data));
+            //        richTextBox1.AppendText(Environment.NewLine);
+            //        richTextBox1.ScrollToCaret();
+            //    }
+            //    catch
+            //    {
+            //    }
+            //});
 
             //ss.Send(e.ConnectionId, e.ReceivedRawData);
         }
@@ -93,15 +95,12 @@ namespace AsyncSocketTestWinForm
                 catch
                 {
                 }
-            });
 
-            if (ss.NumConnectedSockets >= this.maxClient)
-            {
-                this.maxClient = ss.NumConnectedSockets;
-            }
+                if (ss.NumConnectedSockets >= this.maxClient)
+                {
+                    this.maxClient = ss.NumConnectedSockets;
+                }
 
-            this.Invoke((MethodInvoker)delegate
-            {
                 label4.Text = this.maxClient.ToString();
             });
         }
@@ -121,17 +120,18 @@ namespace AsyncSocketTestWinForm
                 try
                 {
                     ss.Start();
-                }
-                catch
-                {
-                }
 
-                this.Invoke((MethodInvoker)delegate
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        richTextBox1.AppendText(string.Format("-> Server start to listening port: {0}", ss.LocalEndPoint.Port));
+                        richTextBox1.AppendText(Environment.NewLine);
+                        richTextBox1.ScrollToCaret();
+                    });
+                }
+                catch(Exception ex)
                 {
-                    richTextBox1.AppendText(string.Format("-> Server start to listening port: {0}", ss.LocalEndPoint.Port));
-                    richTextBox1.AppendText(Environment.NewLine);
-                    richTextBox1.ScrollToCaret();
-                });
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
             {
@@ -153,24 +153,24 @@ namespace AsyncSocketTestWinForm
                 try
                 {
                     ss.Stop();
+
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        //ss.Connected -= new EventHandler<AsyncSocketUserToken>(ss_Connected);
+                        //ss.DataReceived -= new EventHandler<AsyncSocketUserToken>(ss_DataReceived);
+                        //ss.DataSent -= new EventHandler<AsyncSocketUserToken>(ss_DataSent);
+                        //ss.Disconnected -= new EventHandler<AsyncSocketUserToken>(ss_Disconnected);
+                        //ss.ErrorOccurred -= new EventHandler<AsyncSocketErrorEventArgs>(ss_ErrorOccurred);
+
+                        richTextBox1.AppendText("-> Server stop!");
+                        richTextBox1.AppendText(Environment.NewLine);
+                        richTextBox1.ScrollToCaret();
+                    });
                 }
                 catch (Exception ee)
                 {
                     MessageBox.Show(ee.Message);
                 }
-
-                this.Invoke((MethodInvoker)delegate
-                {
-                    //ss.Connected -= new EventHandler<AsyncSocketUserToken>(ss_Connected);
-                    //ss.DataReceived -= new EventHandler<AsyncSocketUserToken>(ss_DataReceived);
-                    //ss.DataSent -= new EventHandler<AsyncSocketUserToken>(ss_DataSent);
-                    //ss.Disconnected -= new EventHandler<AsyncSocketUserToken>(ss_Disconnected);
-                    //ss.ErrorOccurred -= new EventHandler<AsyncSocketErrorEventArgs>(ss_ErrorOccurred);
-
-                    richTextBox1.AppendText("-> Server stop!");
-                    richTextBox1.AppendText(Environment.NewLine);
-                    richTextBox1.ScrollToCaret();
-                });
             }
             else
             {

@@ -180,30 +180,25 @@ namespace AsyncSocket
         {
             lock (((ICollection)this._tokens).SyncRoot)
             {
-                if (!this._tokens.ContainsKey(connectionId))
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
+                return this._tokens.ContainsKey(connectionId);
             }
         }
 
         /// <summary>
         /// Start socket server
         /// </summary>
-        public void Start()
+        /// <param name="useIOCP">Specifies whether the socket should only use Overlapped I/O mode.</param>
+        public void Start(bool useIOCP = true)
         {
-            this.Start(this.LocalEndPoint);
+            this.Start(this.LocalEndPoint, useIOCP);
         }
 
         /// <summary>
         /// Start socket server to listen specific local port
         /// </summary>
         /// <param name="localEndPoint">local port to listen</param>
-        public void Start(IPEndPoint localEndPoint)
+        /// <param name="useIOCP">Specifies whether the socket should only use Overlapped I/O mode.</param>
+        public void Start(IPEndPoint localEndPoint, bool useIOCP = true)
         {
             if (!this.IsListening)
             {
@@ -221,10 +216,12 @@ namespace AsyncSocket
                     this._listenSocket = new Socket(localEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                     this._listenSocket.Bind(localEndPoint);
                     this._listenSocket.Listen(AsyncSocketConstants.Backlog);
+                    this._listenSocket.UseOnlyOverlappedIO = useIOCP;
                 }
                 catch (ObjectDisposedException)
                 {
                     this.IsListening = false;
+                    throw;
                 }
                 catch (SocketException)
                 {
@@ -414,8 +411,6 @@ namespace AsyncSocket
         {
             if (this.IsListening)
             {
-                this.IsListening = false;
-
                 try
                 {
                     this._listenSocket.Close();
@@ -423,30 +418,35 @@ namespace AsyncSocket
                 catch (Exception ex)
                 {
                     Debug.WriteLine(string.Format(AsyncSocketConstants.DebugStringFormat, ex.Message));
+                    throw;
                 }
-
-                lock (((ICollection)this._tokens).SyncRoot)
+                finally
                 {
-                    foreach (AsyncSocketUserToken token in this._tokens.Values)
+                    lock (((ICollection)this._tokens).SyncRoot)
                     {
-                        try
+                        foreach (AsyncSocketUserToken token in this._tokens.Values)
                         {
-                            this.CloseClientSocket(token);
-
-                            if (null != token)
+                            try
                             {
-                                this.OnDisconnected(token);
+                                this.CloseClientSocket(token);
+
+                                if (null != token)
+                                {
+                                    this.OnDisconnected(token);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Debug.WriteLine(string.Format(AsyncSocketConstants.ClientClosedStringFormat, ex.Message));
+                                throw;
                             }
                         }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine(string.Format(AsyncSocketConstants.ClientClosedStringFormat, ex.Message));
-                            throw;
-                        }
-                    }
 
-                    this._tokens.Clear();
+                        this._tokens.Clear();
+                    }
                 }
+
+                this.IsListening = false;
             }
         }
 
