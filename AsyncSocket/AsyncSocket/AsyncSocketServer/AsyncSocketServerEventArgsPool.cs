@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="SocketAsyncEventArgsPool.cs" company="GY Corporation">
+// <copyright file="AsyncSocketServerEventArgsPool.cs" company="GY Corporation">
 //     Copyright (c) GY Corporation. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -12,7 +12,7 @@ namespace AsyncSocket
     /// <summary>
     /// Represents a collection of resusable SocketAsyncEventArgs objects.
     /// </summary>
-    internal class SocketAsyncEventArgsPool
+    internal class AsyncSocketServerEventArgsPool
     {
         /// <summary>
         /// The SocketAsyncEventArgs object pool
@@ -23,7 +23,7 @@ namespace AsyncSocket
         /// Initializes the object pool to the specified size
         /// </summary>
         /// <param name="capacity">The maximum number of SocketAsyncEventArgs objects the pool can hold</param>
-        public SocketAsyncEventArgsPool(int capacity)
+        public AsyncSocketServerEventArgsPool(int capacity)
         {
             this._pool = new Stack<SocketAsyncEventArgs>(capacity);
         }
@@ -44,7 +44,7 @@ namespace AsyncSocket
         {
             if (item == null)
             {
-                throw new ArgumentNullException(AsyncSocketConstants.SocketAsyncEventArgsPoolArgumentNullException);
+                throw new ArgumentNullException(AsyncSocketServerConstants.SocketAsyncEventArgsPoolArgumentNullException);
             }
 
             lock (this._pool)

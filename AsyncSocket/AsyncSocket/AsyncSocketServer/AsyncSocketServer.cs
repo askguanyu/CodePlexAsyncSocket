@@ -36,7 +36,7 @@ namespace AsyncSocket
         /// <summary>
         ///
         /// </summary>
-        private Dictionary<Guid, AsyncSocketUserToken> _tokens;
+        private Dictionary<Guid, AsyncSocketServerUserToken> _tokens;
 
         /// <summary>
         /// the maximum number of connections the class is designed to handle simultaneously
@@ -51,7 +51,7 @@ namespace AsyncSocket
         /// <summary>
         /// represents a large reusable set of buffers for all socket operations
         /// </summary>
-        private SocketAsyncEventArgsBufferManager _bufferManager;
+        private AsyncSocketServerEventArgsBufferManager _bufferManager;
 
         /// <summary>
         /// the socket used to listen for incoming connection requests
@@ -61,12 +61,12 @@ namespace AsyncSocket
         /// <summary>
         /// pool of reusable SocketAsyncEventArgs objects for read and accept socket operations
         /// </summary>
-        private SocketAsyncEventArgsPool _readPool;
+        private AsyncSocketServerEventArgsPool _readPool;
 
         /// <summary>
         /// pool of reusable SocketAsyncEventArgs objects for write and accept socket operations
         /// </summary>
-        private SocketAsyncEventArgsPool _writePool;
+        private AsyncSocketServerEventArgsPool _writePool;
 
         /// <summary>
         /// counter of the total bytes received by the server
@@ -94,7 +94,7 @@ namespace AsyncSocket
         /// <param name="localEndPoint">local port to listen</param>
         /// <param name="numConnections">the maximum number of connections the class is designed to handle simultaneously</param>
         /// <param name="bufferSize">buffer size to use for each socket I/O operation</param>
-        public AsyncSocketServer(IPEndPoint localEndPoint, int numConnections = AsyncSocketConstants.NumConnections, int bufferSize = AsyncSocketConstants.BufferSize)
+        public AsyncSocketServer(IPEndPoint localEndPoint, int numConnections = AsyncSocketServerConstants.NumConnections, int bufferSize = AsyncSocketServerConstants.BufferSize)
         {
             this._totalBytesRead = 0;
             this._totalBytesWrite = 0;
@@ -107,27 +107,27 @@ namespace AsyncSocket
         /// <summary>
         /// Client Connected Event
         /// </summary>
-        public event EventHandler<AsyncSocketUserToken> Connected;
+        public event EventHandler<AsyncSocketServerUserToken> Connected;
 
         /// <summary>
         /// Error Occurred Event
         /// </summary>
-        public event EventHandler<AsyncSocketErrorEventArgs> ErrorOccurred;
+        public event EventHandler<AsyncSocketServerErrorEventArgs> ErrorOccurred;
 
         /// <summary>
         /// Client Data Received Event
         /// </summary>
-        public event EventHandler<AsyncSocketUserToken> DataReceived;
+        public event EventHandler<AsyncSocketServerUserToken> DataReceived;
 
         /// <summary>
         /// Client Data Sent Event
         /// </summary>
-        public event EventHandler<AsyncSocketUserToken> DataSent;
+        public event EventHandler<AsyncSocketServerUserToken> DataSent;
 
         /// <summary>
         /// Client Disconnected Event
         /// </summary>
-        public event EventHandler<AsyncSocketUserToken> Disconnected;
+        public event EventHandler<AsyncSocketServerUserToken> Disconnected;
 
         /// <summary>
         /// Gets a value indicating whether socket server is listening
@@ -215,7 +215,7 @@ namespace AsyncSocket
 
                     this._listenSocket = new Socket(localEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                     this._listenSocket.Bind(localEndPoint);
-                    this._listenSocket.Listen(AsyncSocketConstants.Backlog);
+                    this._listenSocket.Listen(AsyncSocketServerConstants.Backlog);
                     this._listenSocket.UseOnlyOverlappedIO = useIOCP;
                 }
                 catch (ObjectDisposedException)
@@ -226,19 +226,19 @@ namespace AsyncSocket
                 catch (SocketException)
                 {
                     this.IsListening = false;
-                    throw new AsyncSocketException(AsyncSocketConstants.SocketStartException, AsyncSocketErrorCodeEnum.ServerStartFailure);
+                    throw new AsyncSocketServerException(AsyncSocketServerConstants.SocketStartException, AsyncSocketServerErrorCodeEnum.ServerStartFailure);
                 }
                 catch (Exception ex)
                 {
                     this.IsListening = false;
-                    Debug.WriteLine(string.Format(AsyncSocketConstants.DebugStringFormat, ex.Message));
+                    Debug.WriteLine(string.Format(AsyncSocketServerConstants.DebugStringFormat, ex.Message));
                     throw;
                 }
 
                 this.IsListening = true;
                 StartAccept(null);
 
-                Debug.WriteLine(string.Format(AsyncSocketConstants.SocketStartSuccessfully));
+                Debug.WriteLine(string.Format(AsyncSocketServerConstants.SocketStartSuccessfully));
             }
         }
 
@@ -249,13 +249,13 @@ namespace AsyncSocket
         /// <param name="buffer">Data to send</param>
         public void Send(Guid connectionId, byte[] buffer)
         {
-            AsyncSocketUserToken token;
+            AsyncSocketServerUserToken token;
 
             lock (((ICollection)this._tokens).SyncRoot)
             {
                 if (!this._tokens.TryGetValue(connectionId, out token))
                 {
-                    throw new AsyncSocketException(string.Format(AsyncSocketConstants.ClientClosedStringFormat, connectionId), AsyncSocketErrorCodeEnum.ClientSocketNoExist);
+                    throw new AsyncSocketServerException(string.Format(AsyncSocketServerConstants.ClientClosedStringFormat, connectionId), AsyncSocketServerErrorCodeEnum.ClientSocketNoExist);
                 }
             }
 
@@ -303,12 +303,12 @@ namespace AsyncSocket
                 }
                 else
                 {
-                    RaiseErrorEvent(token, new AsyncSocketException(AsyncSocketConstants.SocketSendException, socketException));
+                    RaiseErrorEvent(token, new AsyncSocketServerException(AsyncSocketServerConstants.SocketSendException, socketException));
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(string.Format(AsyncSocketConstants.DebugStringFormat, ex.Message));
+                Debug.WriteLine(string.Format(AsyncSocketServerConstants.DebugStringFormat, ex.Message));
                 throw;
             }
         }
@@ -321,13 +321,13 @@ namespace AsyncSocket
         /// <param name="operation">user defined operation</param>
         public void Send(Guid connectionId, byte[] buffer, object operation)
         {
-            AsyncSocketUserToken token;
+            AsyncSocketServerUserToken token;
 
             lock (((ICollection)this._tokens).SyncRoot)
             {
                 if (!this._tokens.TryGetValue(connectionId, out token))
                 {
-                    throw new AsyncSocketException(string.Format(AsyncSocketConstants.ClientClosedStringFormat, connectionId), AsyncSocketErrorCodeEnum.ClientSocketNoExist);
+                    throw new AsyncSocketServerException(string.Format(AsyncSocketServerConstants.ClientClosedStringFormat, connectionId), AsyncSocketServerErrorCodeEnum.ClientSocketNoExist);
                 }
             }
 
@@ -375,12 +375,12 @@ namespace AsyncSocket
                 }
                 else
                 {
-                    RaiseErrorEvent(token, new AsyncSocketException(AsyncSocketConstants.SocketSendException, socketException));
+                    RaiseErrorEvent(token, new AsyncSocketServerException(AsyncSocketServerConstants.SocketSendException, socketException));
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(string.Format(AsyncSocketConstants.DebugStringFormat, ex.Message));
+                Debug.WriteLine(string.Format(AsyncSocketServerConstants.DebugStringFormat, ex.Message));
                 throw;
             }
         }
@@ -391,13 +391,13 @@ namespace AsyncSocket
         /// <param name="connectionId">Client connection Id</param>
         public void Disconnect(Guid connectionId)
         {
-            AsyncSocketUserToken token;
+            AsyncSocketServerUserToken token;
 
             lock (((ICollection)this._tokens).SyncRoot)
             {
                 if (!this._tokens.TryGetValue(connectionId, out token))
                 {
-                    throw new AsyncSocketException(string.Format(AsyncSocketConstants.ClientClosedStringFormat, connectionId), AsyncSocketErrorCodeEnum.ClientSocketNoExist);
+                    throw new AsyncSocketServerException(string.Format(AsyncSocketServerConstants.ClientClosedStringFormat, connectionId), AsyncSocketServerErrorCodeEnum.ClientSocketNoExist);
                 }
             }
 
@@ -417,14 +417,14 @@ namespace AsyncSocket
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine(string.Format(AsyncSocketConstants.DebugStringFormat, ex.Message));
+                    Debug.WriteLine(string.Format(AsyncSocketServerConstants.DebugStringFormat, ex.Message));
                     throw;
                 }
                 finally
                 {
                     lock (((ICollection)this._tokens).SyncRoot)
                     {
-                        foreach (AsyncSocketUserToken token in this._tokens.Values)
+                        foreach (AsyncSocketServerUserToken token in this._tokens.Values)
                         {
                             try
                             {
@@ -437,7 +437,7 @@ namespace AsyncSocket
                             }
                             catch (Exception ex)
                             {
-                                Debug.WriteLine(string.Format(AsyncSocketConstants.ClientClosedStringFormat, ex.Message));
+                                Debug.WriteLine(string.Format(AsyncSocketServerConstants.ClientClosedStringFormat, ex.Message));
                                 throw;
                             }
                         }
@@ -463,10 +463,10 @@ namespace AsyncSocket
         ///
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnConnected(AsyncSocketUserToken e)
+        protected virtual void OnConnected(AsyncSocketServerUserToken e)
         {
             // Copy a reference to the delegate field now into a temporary field for thread safety
-            EventHandler<AsyncSocketUserToken> temp = Interlocked.CompareExchange(ref Connected, null, null);
+            EventHandler<AsyncSocketServerUserToken> temp = Interlocked.CompareExchange(ref Connected, null, null);
 
             if ((temp != null) && (e.EndPoint != null))
             {
@@ -479,10 +479,10 @@ namespace AsyncSocket
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected virtual void OnErrorOccurred(object sender, AsyncSocketErrorEventArgs e)
+        protected virtual void OnErrorOccurred(object sender, AsyncSocketServerErrorEventArgs e)
         {
             // Copy a reference to the delegate field now into a temporary field for thread safety
-            EventHandler<AsyncSocketErrorEventArgs> temp = Interlocked.CompareExchange(ref ErrorOccurred, null, null);
+            EventHandler<AsyncSocketServerErrorEventArgs> temp = Interlocked.CompareExchange(ref ErrorOccurred, null, null);
 
             if (temp != null)
             {
@@ -494,10 +494,10 @@ namespace AsyncSocket
         ///
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnDataReceived(AsyncSocketUserToken e)
+        protected virtual void OnDataReceived(AsyncSocketServerUserToken e)
         {
             // Copy a reference to the delegate field now into a temporary field for thread safety
-            EventHandler<AsyncSocketUserToken> temp = Interlocked.CompareExchange(ref DataReceived, null, null);
+            EventHandler<AsyncSocketServerUserToken> temp = Interlocked.CompareExchange(ref DataReceived, null, null);
 
             if ((temp != null) && (e.EndPoint != null))
             {
@@ -509,10 +509,10 @@ namespace AsyncSocket
         ///
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnDataSent(AsyncSocketUserToken e)
+        protected virtual void OnDataSent(AsyncSocketServerUserToken e)
         {
             // Copy a reference to the delegate field now into a temporary field for thread safety
-            EventHandler<AsyncSocketUserToken> temp = Interlocked.CompareExchange(ref DataSent, null, null);
+            EventHandler<AsyncSocketServerUserToken> temp = Interlocked.CompareExchange(ref DataSent, null, null);
 
             if (temp != null)
             {
@@ -524,10 +524,10 @@ namespace AsyncSocket
         ///
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnDisconnected(AsyncSocketUserToken e)
+        protected virtual void OnDisconnected(AsyncSocketServerUserToken e)
         {
             // Copy a reference to the delegate field now into a temporary field for thread safety
-            EventHandler<AsyncSocketUserToken> temp = Interlocked.CompareExchange(ref Disconnected, null, null);
+            EventHandler<AsyncSocketServerUserToken> temp = Interlocked.CompareExchange(ref Disconnected, null, null);
 
             if ((temp != null) && (e.EndPoint != null))
             {
@@ -562,21 +562,21 @@ namespace AsyncSocket
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
         private void InitializePool()
         {
-            this._bufferManager = new SocketAsyncEventArgsBufferManager(_bufferSize * _numConnections * AsyncSocketConstants.OpsToPreAlloc, _bufferSize);
-            this._readPool = new SocketAsyncEventArgsPool(_numConnections);
-            this._writePool = new SocketAsyncEventArgsPool(_numConnections);
-            this._tokens = new Dictionary<Guid, AsyncSocketUserToken>();
+            this._bufferManager = new AsyncSocketServerEventArgsBufferManager(_bufferSize * _numConnections * AsyncSocketServerConstants.OpsToPreAlloc, _bufferSize);
+            this._readPool = new AsyncSocketServerEventArgsPool(_numConnections);
+            this._writePool = new AsyncSocketServerEventArgsPool(_numConnections);
+            this._tokens = new Dictionary<Guid, AsyncSocketServerUserToken>();
             this._maxNumberAcceptedClients = new Semaphore(_numConnections, _numConnections);
 
             this._bufferManager.InitBuffer();
 
             SocketAsyncEventArgs readWriteEventArg;
-            AsyncSocketUserToken token;
+            AsyncSocketServerUserToken token;
 
             /// Initialize read Pool
             for (int i = 0; i < _numConnections; i++)
             {
-                token = new AsyncSocketUserToken();
+                token = new AsyncSocketServerUserToken();
                 token.ReadEventArgs.Completed += new EventHandler<SocketAsyncEventArgs>(IO_Completed);
                 this._bufferManager.SetBuffer(token.ReadEventArgs);
                 token.SetBuffer(token.ReadEventArgs.Buffer, token.ReadEventArgs.Offset);
@@ -623,16 +623,16 @@ namespace AsyncSocket
             }
             catch (ObjectDisposedException ex)
             {
-                Debug.WriteLine(string.Format(AsyncSocketConstants.DebugStringFormat, ex.Message));
+                Debug.WriteLine(string.Format(AsyncSocketServerConstants.DebugStringFormat, ex.Message));
             }
             catch (SocketException ex)
             {
-                Debug.WriteLine(string.Format(AsyncSocketConstants.DebugStringFormat, ex.Message));
-                RaiseErrorEvent(null, new AsyncSocketException(AsyncSocketConstants.SocketAcceptedException, ex));
+                Debug.WriteLine(string.Format(AsyncSocketServerConstants.DebugStringFormat, ex.Message));
+                RaiseErrorEvent(null, new AsyncSocketServerException(AsyncSocketServerConstants.SocketAcceptedException, ex));
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(string.Format(AsyncSocketConstants.DebugStringFormat, ex.Message));
+                Debug.WriteLine(string.Format(AsyncSocketServerConstants.DebugStringFormat, ex.Message));
                 throw;
             }
         }
@@ -651,9 +651,9 @@ namespace AsyncSocket
         /// <param name="e"></param>
         private void ProcessAccept(SocketAsyncEventArgs e)
         {
-            AsyncSocketUserToken token;
+            AsyncSocketServerUserToken token;
             Interlocked.Increment(ref _numConnectedSockets);
-            Debug.WriteLine(string.Format(AsyncSocketConstants.ClientConnectionStringFormat, _numConnectedSockets.ToString()));
+            Debug.WriteLine(string.Format(AsyncSocketServerConstants.ClientConnectionStringFormat, _numConnectedSockets.ToString()));
             SocketAsyncEventArgs readEventArg;
 
             lock (_readPool)
@@ -661,7 +661,7 @@ namespace AsyncSocket
                 readEventArg = _readPool.Pop();
             }
 
-            token = (AsyncSocketUserToken)readEventArg.UserToken;
+            token = (AsyncSocketServerUserToken)readEventArg.UserToken;
 
             token.Socket = e.AcceptSocket;
 
@@ -694,13 +694,13 @@ namespace AsyncSocket
                 }
                 else
                 {
-                    RaiseErrorEvent(token, new AsyncSocketException(AsyncSocketConstants.SocketReceiveException, socketException));
+                    RaiseErrorEvent(token, new AsyncSocketServerException(AsyncSocketServerConstants.SocketReceiveException, socketException));
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(string.Format(AsyncSocketConstants.DebugStringFormat, ex.Message));
-                RaiseErrorEvent(token, new AsyncSocketException(ex.Message, AsyncSocketErrorCodeEnum.ThrowSocketException));
+                Debug.WriteLine(string.Format(AsyncSocketServerConstants.DebugStringFormat, ex.Message));
+                RaiseErrorEvent(token, new AsyncSocketServerException(ex.Message, AsyncSocketServerErrorCodeEnum.ThrowSocketException));
             }
             finally
             {
@@ -723,7 +723,7 @@ namespace AsyncSocket
                     ProcessSend(e);
                     break;
                 default:
-                    throw new ArgumentException(AsyncSocketConstants.SocketLastOperationException);
+                    throw new ArgumentException(AsyncSocketServerConstants.SocketLastOperationException);
             }
         }
 
@@ -733,12 +733,12 @@ namespace AsyncSocket
         /// <param name="e"></param>
         private void ProcessReceive(SocketAsyncEventArgs e)
         {
-            AsyncSocketUserToken token = (AsyncSocketUserToken)e.UserToken;
+            AsyncSocketServerUserToken token = (AsyncSocketServerUserToken)e.UserToken;
 
             if (e.BytesTransferred > 0 && e.SocketError == SocketError.Success)
             {
                 Interlocked.Add(ref _totalBytesRead, e.BytesTransferred);
-                Debug.WriteLine(string.Format(AsyncSocketConstants.ServerReceiveTotalBytesStringFormat, this._totalBytesRead.ToString()));
+                Debug.WriteLine(string.Format(AsyncSocketServerConstants.ServerReceiveTotalBytesStringFormat, this._totalBytesRead.ToString()));
 
                 token.SetBytesReceived(e.BytesTransferred);
 
@@ -764,12 +764,12 @@ namespace AsyncSocket
                     }
                     else
                     {
-                        RaiseErrorEvent(token, new AsyncSocketException(AsyncSocketConstants.SocketReceiveException, socketException));
+                        RaiseErrorEvent(token, new AsyncSocketServerException(AsyncSocketServerConstants.SocketReceiveException, socketException));
                     }
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine(string.Format(AsyncSocketConstants.DebugStringFormat, ex.Message));
+                    Debug.WriteLine(string.Format(AsyncSocketServerConstants.DebugStringFormat, ex.Message));
                     throw;
                 }
             }
@@ -785,7 +785,7 @@ namespace AsyncSocket
         /// <param name="e"></param>
         private void ProcessSend(SocketAsyncEventArgs e)
         {
-            AsyncSocketUserToken token = (AsyncSocketUserToken)e.UserToken;
+            AsyncSocketServerUserToken token = (AsyncSocketServerUserToken)e.UserToken;
 
             Interlocked.Add(ref _totalBytesWrite, e.BytesTransferred);
 
@@ -806,7 +806,7 @@ namespace AsyncSocket
 
             if (e.SocketError == SocketError.Success)
             {
-                Debug.WriteLine(string.Format(AsyncSocketConstants.ServerSendTotalBytesStringFormat, e.BytesTransferred.ToString()));
+                Debug.WriteLine(string.Format(AsyncSocketServerConstants.ServerSendTotalBytesStringFormat, e.BytesTransferred.ToString()));
 
                 this.OnDataSent(token);
             }
@@ -820,7 +820,7 @@ namespace AsyncSocket
         ///
         /// </summary>
         /// <param name="token"></param>
-        private void RaiseDisconnectedEvent(AsyncSocketUserToken token)
+        private void RaiseDisconnectedEvent(AsyncSocketServerUserToken token)
         {
             if (null != token)
             {
@@ -844,7 +844,7 @@ namespace AsyncSocket
         ///
         /// </summary>
         /// <param name="token"></param>
-        private void CloseClientSocket(AsyncSocketUserToken token)
+        private void CloseClientSocket(AsyncSocketServerUserToken token)
         {
             try
             {
@@ -861,7 +861,7 @@ namespace AsyncSocket
             catch (Exception ex)
             {
                 token.Socket.Close();
-                Debug.WriteLine(string.Format(AsyncSocketConstants.DebugStringFormat, ex.Message));
+                Debug.WriteLine(string.Format(AsyncSocketServerConstants.DebugStringFormat, ex.Message));
                 throw;
             }
             finally
@@ -869,7 +869,7 @@ namespace AsyncSocket
                 Interlocked.Decrement(ref _numConnectedSockets);
                 this._maxNumberAcceptedClients.Release();
 
-                Debug.WriteLine(string.Format(AsyncSocketConstants.ClientConnectionStringFormat, _numConnectedSockets.ToString()));
+                Debug.WriteLine(string.Format(AsyncSocketServerConstants.ClientConnectionStringFormat, _numConnectedSockets.ToString()));
 
                 lock (_readPool)
                 {
@@ -883,15 +883,15 @@ namespace AsyncSocket
         /// </summary>
         /// <param name="token"></param>
         /// <param name="exception"></param>
-        private void RaiseErrorEvent(AsyncSocketUserToken token, AsyncSocketException exception)
+        private void RaiseErrorEvent(AsyncSocketServerUserToken token, AsyncSocketServerException exception)
         {
             if (null != token)
             {
-                this.OnErrorOccurred(token, new AsyncSocketErrorEventArgs(exception));
+                this.OnErrorOccurred(token, new AsyncSocketServerErrorEventArgs(exception));
             }
             else
             {
-                this.OnErrorOccurred(null, new AsyncSocketErrorEventArgs(exception));
+                this.OnErrorOccurred(null, new AsyncSocketServerErrorEventArgs(exception));
             }
         }
     }

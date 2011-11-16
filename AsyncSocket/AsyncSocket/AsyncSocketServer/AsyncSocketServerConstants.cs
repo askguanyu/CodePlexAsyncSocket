@@ -1,14 +1,14 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="AsyncSocketConstants.cs" company="GY Corporation">
+// <copyright file="AsyncSocketServerConstants.cs" company="GY Corporation">
 //     Copyright (c) GY Corporation. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
 namespace AsyncSocket
 {
     /// <summary>
-    /// AsyncSocket constant and default value
+    /// AsyncSocketServer constant and default value
     /// </summary>
-    internal static class AsyncSocketConstants
+    internal static class AsyncSocketServerConstants
     {
         /// <summary>
         /// read, write (don't alloc buffer space for accepts)
@@ -28,7 +28,7 @@ namespace AsyncSocket
         /// <summary>
         ///
         /// </summary>
-        internal const int BufferSize = 4096;
+        internal const int BufferSize = 0x10240;
 
         /// <summary>
         ///

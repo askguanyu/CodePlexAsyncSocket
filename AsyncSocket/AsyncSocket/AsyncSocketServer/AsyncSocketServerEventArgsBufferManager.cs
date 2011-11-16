@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="SocketAsyncEventArgsBufferManager.cs" company="GY Corporation">
+// <copyright file="AsyncSocketServerEventArgsBufferManager.cs" company="GY Corporation">
 //     Copyright (c) GY Corporation. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -14,7 +14,7 @@ namespace AsyncSocket
     ///
     /// The operations exposed on the class are not thread safe.
     /// </summary>
-    internal class SocketAsyncEventArgsBufferManager
+    internal class AsyncSocketServerEventArgsBufferManager
     {
         /// <summary>
         /// the total number of bytes controlled by the buffer pool
@@ -46,7 +46,7 @@ namespace AsyncSocket
         /// </summary>
         /// <param name="totalBytes">Total Bytes</param>
         /// <param name="bufferSize">Buffer Size</param>
-        public SocketAsyncEventArgsBufferManager(int totalBytes, int bufferSize)
+        public AsyncSocketServerEventArgsBufferManager(int totalBytes, int bufferSize)
         {
             this._numBytes = totalBytes;
             this._currentIndex = 0;

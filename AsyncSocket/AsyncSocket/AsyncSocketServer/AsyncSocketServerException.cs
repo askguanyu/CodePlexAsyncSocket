@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="AsyncSocketException.cs" company="GY Corporation">
+// <copyright file="AsyncSocketServerException.cs" company="GY Corporation">
 //     Copyright (c) GY Corporation. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -13,17 +13,17 @@ namespace AsyncSocket
     /// AsyncSocket Exception Class
     /// </summary>
     [Serializable]
-    public class AsyncSocketException : Exception
+    public class AsyncSocketServerException : Exception
     {
         /// <summary>
         ///
         /// </summary>
         /// <param name="message"></param>
         /// <param name="socketException"></param>
-        public AsyncSocketException(string message, SocketException socketException) :
-            base(String.Format("{0} - {1}", message, AsyncSocketConstants.AsyncSocketException), socketException)
+        public AsyncSocketServerException(string message, SocketException socketException) :
+            base(String.Format("{0} - {1}", message, AsyncSocketServerConstants.AsyncSocketException), socketException)
         {
-            this.ErrorCode = AsyncSocketErrorCodeEnum.ThrowSocketException;
+            this.ErrorCode = AsyncSocketServerErrorCodeEnum.ThrowSocketException;
         }
 
         /// <summary>
@@ -31,8 +31,8 @@ namespace AsyncSocket
         /// </summary>
         /// <param name="message"></param>
         /// <param name="errorCode"></param>
-        public AsyncSocketException(string message, AsyncSocketErrorCodeEnum errorCode) :
-            base(String.Format("{0} - {1}", message, AsyncSocketConstants.AsyncSocketException))
+        public AsyncSocketServerException(string message, AsyncSocketServerErrorCodeEnum errorCode) :
+            base(String.Format("{0} - {1}", message, AsyncSocketServerConstants.AsyncSocketException))
         {
             this.ErrorCode = errorCode;
         }
@@ -40,7 +40,7 @@ namespace AsyncSocket
         /// <summary>
         /// Gets AsyncSocket ErrorCode
         /// </summary>
-        public AsyncSocketErrorCodeEnum ErrorCode
+        public AsyncSocketServerErrorCodeEnum ErrorCode
         {
             get;
             private set;

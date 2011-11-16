@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="AsyncSocketUserToken.cs" company="GY Corporation">
+// <copyright file="AsyncSocketServerUserToken.cs" company="GY Corporation">
 //     Copyright (c) GY Corporation. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -12,7 +12,7 @@ namespace AsyncSocket
     /// <summary>
     /// This class is designed for use as the object to be assigned to the SocketAsyncEventArgs.UserToken property.
     /// </summary>
-    public class AsyncSocketUserToken : EventArgs
+    public class AsyncSocketServerUserToken : EventArgs
     {
         /// <summary>
         ///
@@ -22,13 +22,13 @@ namespace AsyncSocket
         /// <summary>
         /// Constructor of AsyncUserToken
         /// </summary>
-        public AsyncSocketUserToken() : this(null) { }
+        public AsyncSocketServerUserToken() : this(null) { }
 
         /// <summary>
         /// Constructor of AsyncUserToken
         /// </summary>
         /// <param name="socket">Socket context</param>
-        public AsyncSocketUserToken(Socket socket)
+        public AsyncSocketServerUserToken(Socket socket)
         {
             this.ReadEventArgs = new SocketAsyncEventArgs();
             this.ReadEventArgs.UserToken = this;
