@@ -44,15 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AsyncSocketErrorCodeEnum.cs" />
-    <Compile Include="AsyncSocketErrorEventArgs.cs" />
-    <Compile Include="AsyncSocketException.cs" />
-    <Compile Include="AsyncSocketServer.cs" />
-    <Compile Include="AsyncSocketConstants.cs" />
-    <Compile Include="AsyncSocketUserToken.cs" />
+    <Compile Include="AsyncSocketServer\AsyncSocketErrorCodeEnum.cs" />
+    <Compile Include="AsyncSocketServer\AsyncSocketErrorEventArgs.cs" />
+    <Compile Include="AsyncSocketServer\AsyncSocketException.cs" />
+    <Compile Include="AsyncSocketServer\AsyncSocketServer.cs" />
+    <Compile Include="AsyncSocketServer\AsyncSocketConstants.cs" />
+    <Compile Include="AsyncSocketServer\AsyncSocketUserToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SocketAsyncEventArgsBufferManager.cs" />
-    <Compile Include="SocketAsyncEventArgsPool.cs" />
+    <Compile Include="AsyncSocketServer\SocketAsyncEventArgsBufferManager.cs" />
+    <Compile Include="AsyncSocketServer\SocketAsyncEventArgsPool.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AsyncSocketClient\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

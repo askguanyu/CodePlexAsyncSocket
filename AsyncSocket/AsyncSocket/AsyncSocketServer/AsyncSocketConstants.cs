@@ -28,7 +28,7 @@ namespace AsyncSocket
         /// <summary>
         ///
         /// </summary>
-        internal const int BufferSize = 1024;
+        internal const int BufferSize = 4096;
 
         /// <summary>
         ///
