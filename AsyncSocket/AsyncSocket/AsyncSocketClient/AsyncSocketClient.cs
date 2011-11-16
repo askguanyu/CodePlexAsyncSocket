@@ -3,7 +3,7 @@
 //     Copyright (c) GY Corporation. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-namespace AsyncSocket.AsyncSocketClient
+namespace AsyncSocket
 {
     using System;
     using System.Diagnostics;

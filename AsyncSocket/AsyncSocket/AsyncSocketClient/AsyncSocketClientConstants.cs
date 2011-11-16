@@ -3,7 +3,7 @@
 //     Copyright (c) Contoso Corporation. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
-namespace AsyncSocket.AsyncSocketClient
+namespace AsyncSocket
 {
     /// <summary>
     /// AsyncSocketClient constant and default value
