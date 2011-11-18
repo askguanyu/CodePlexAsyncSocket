@@ -1,36 +1,120 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="WinFormMain.cs" company="Contoso Corporation">
+//     Copyright (c) Contoso Corporation. All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace GY.NetAid.WinForms
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Windows.Forms;
+
+    /// <summary>
+    ///
+    /// </summary>
     public partial class WinFormMain : Form
     {
         public WinFormMain()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.InitializeRibbonTabContainer();
         }
 
-        private void tabPage1_DoubleClick(object sender, EventArgs e)
+        #region RibbonLogic
+        private const int RIBBON_COLLAPSE_HEIGHT = 22;
+
+        private const int RIBBON_EXPAND_HEIGHT = 100;
+
+        private bool _isRibbonTabExpand;
+
+        private bool _isRibbonTabShow;
+
+        private void InitializeRibbonTabContainer()
         {
-            
+            this._isRibbonTabExpand = true;
+            this._isRibbonTabShow = true;
+            this.CollapseRibbonTabContainer(!this._isRibbonTabExpand);
+            this.ribbonPage1.ItemClicked += this.HideRibbon;
+            this.ribbonPage2.ItemClicked += this.HideRibbon;
+            this.ribbonPage3.ItemClicked += this.HideRibbon;
         }
 
-        private void tabControl1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void RibbonTabContainer_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (this.splitContainer1.SplitterDistance == 100)
+            this.CollapseRibbonTabContainer(this._isRibbonTabExpand);
+        }
+
+        private void CollapseRibbonTabContainer(bool whetherCollapse)
+        {
+            if (whetherCollapse)
             {
-                this.splitContainer1.SplitterDistance = 22; 
+                this.RibbonTabContainer.Height = RIBBON_COLLAPSE_HEIGHT;
+                this.RibbonSplitContainer.Location = new System.Drawing.Point(0, RIBBON_COLLAPSE_HEIGHT);
+                this._isRibbonTabExpand = false;
+                this._isRibbonTabShow = false;
             }
             else
             {
-                this.splitContainer1.SplitterDistance = 100;
+                this.RibbonTabContainer.Height = RIBBON_EXPAND_HEIGHT;
+                this.RibbonSplitContainer.Location = new System.Drawing.Point(0, RIBBON_EXPAND_HEIGHT);
+                this._isRibbonTabExpand = true;
+                this._isRibbonTabShow = true;
             }
         }
+
+        private void RibbonTabContainer_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (!this._isRibbonTabExpand)
+            {
+                if (!this._isRibbonTabShow)
+                {
+                    this.RibbonTabContainer.Height = RIBBON_EXPAND_HEIGHT;
+                    this.RibbonTabContainer.BringToFront();
+                    this._isRibbonTabShow = true;
+                }
+                else
+                {
+                    this.RibbonTabContainer.Height = RIBBON_COLLAPSE_HEIGHT;
+                    this._isRibbonTabShow = false;
+                }
+            }
+        }
+
+        private void RibbonTabContainer_Selected(object sender, TabControlEventArgs e)
+        {
+            this._isRibbonTabShow = false;
+        }
+
+        private void RibbonTabContainer_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (!this._isRibbonTabExpand)
+            {
+                this.RibbonTabContainer.Height = RIBBON_EXPAND_HEIGHT;
+                this.RibbonTabContainer.BringToFront();
+            }
+        }
+
+        private void RibbonTabContainer_Leave(object sender, EventArgs e)
+        {
+            this.HideRibbon(null, null);
+        }
+
+        private void HideRibbon(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (!this._isRibbonTabExpand)
+            {
+                if (this._isRibbonTabShow)
+                {
+                    this.RibbonTabContainer.Height = RIBBON_COLLAPSE_HEIGHT;
+                    this._isRibbonTabShow = false;
+                }
+            }
+        } 
+        #endregion
     }
 }

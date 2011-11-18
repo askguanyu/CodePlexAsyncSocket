@@ -29,46 +29,45 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WinFormMain));
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("");
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
-            this.tabControlMain = new System.Windows.Forms.TabControl();
+            this.RibbonTabContainer = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.ribbonPage1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.ribbonPage3 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonAbout = new System.Windows.Forms.ToolStripButton();
             this.listView1 = new System.Windows.Forms.ListView();
             this.IP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Port = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.State = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.splitContainerMain = new System.Windows.Forms.SplitContainer();
-            this.splitContainerRight = new System.Windows.Forms.SplitContainer();
+            this.RibbonSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.splitContainerRightPanel = new System.Windows.Forms.SplitContainer();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tabControlMain.SuspendLayout();
+            this.ribbonPage2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.RibbonTabContainer.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.ribbonPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
-            this.splitContainerMain.Panel1.SuspendLayout();
-            this.splitContainerMain.Panel2.SuspendLayout();
-            this.splitContainerMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerRight)).BeginInit();
-            this.splitContainerRight.Panel1.SuspendLayout();
-            this.splitContainerRight.Panel2.SuspendLayout();
-            this.splitContainerRight.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
+            this.ribbonPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RibbonSplitContainer)).BeginInit();
+            this.RibbonSplitContainer.Panel1.SuspendLayout();
+            this.RibbonSplitContainer.Panel2.SuspendLayout();
+            this.RibbonSplitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerRightPanel)).BeginInit();
+            this.splitContainerRightPanel.Panel1.SuspendLayout();
+            this.splitContainerRightPanel.Panel2.SuspendLayout();
+            this.splitContainerRightPanel.SuspendLayout();
+            this.ribbonPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStripMain
@@ -79,46 +78,50 @@
             this.statusStripMain.TabIndex = 2;
             this.statusStripMain.Text = "statusStripMain";
             // 
-            // tabControlMain
+            // RibbonTabContainer
             // 
-            this.tabControlMain.Controls.Add(this.tabPage1);
-            this.tabControlMain.Controls.Add(this.tabPage2);
-            this.tabControlMain.Controls.Add(this.tabPage3);
-            this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlMain.ItemSize = new System.Drawing.Size(58, 18);
-            this.tabControlMain.Location = new System.Drawing.Point(0, 0);
-            this.tabControlMain.Name = "tabControlMain";
-            this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(784, 100);
-            this.tabControlMain.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControlMain.TabIndex = 3;
-            this.tabControlMain.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseDoubleClick);
+            this.RibbonTabContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RibbonTabContainer.Controls.Add(this.tabPage1);
+            this.RibbonTabContainer.Controls.Add(this.tabPage2);
+            this.RibbonTabContainer.Controls.Add(this.tabPage3);
+            this.RibbonTabContainer.ItemSize = new System.Drawing.Size(65, 20);
+            this.RibbonTabContainer.Location = new System.Drawing.Point(0, 0);
+            this.RibbonTabContainer.Name = "RibbonTabContainer";
+            this.RibbonTabContainer.SelectedIndex = 0;
+            this.RibbonTabContainer.Size = new System.Drawing.Size(785, 100);
+            this.RibbonTabContainer.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.RibbonTabContainer.TabIndex = 3;
+            this.RibbonTabContainer.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.RibbonTabContainer_Selecting);
+            this.RibbonTabContainer.Selected += new System.Windows.Forms.TabControlEventHandler(this.RibbonTabContainer_Selected);
+            this.RibbonTabContainer.Leave += new System.EventHandler(this.RibbonTabContainer_Leave);
+            this.RibbonTabContainer.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RibbonTabContainer_MouseClick);
+            this.RibbonTabContainer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.RibbonTabContainer_MouseDoubleClick);
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.toolStrip1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Controls.Add(this.ribbonPage1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(776, 74);
+            this.tabPage1.Size = new System.Drawing.Size(777, 72);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "File";
             this.tabPage1.ToolTipText = "File";
-            this.tabPage1.DoubleClick += new System.EventHandler(this.tabPage1_DoubleClick);
             // 
-            // toolStrip1
+            // ribbonPage1
             // 
-            this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
-            this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(48, 48);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ribbonPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.ribbonPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ribbonPage1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.ribbonPage1.ImageScalingSize = new System.Drawing.Size(48, 48);
+            this.ribbonPage1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(770, 70);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this.ribbonPage1.Location = new System.Drawing.Point(3, 3);
+            this.ribbonPage1.Name = "ribbonPage1";
+            this.ribbonPage1.Size = new System.Drawing.Size(771, 70);
+            this.ribbonPage1.TabIndex = 0;
+            this.ribbonPage1.Text = "toolStrip1";
             // 
             // toolStripButton1
             // 
@@ -131,39 +134,40 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.BackColor = System.Drawing.Color.Transparent;
             this.tabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Controls.Add(this.ribbonPage2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(776, 74);
+            this.tabPage2.Size = new System.Drawing.Size(777, 72);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Home";
             // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage3.Controls.Add(this.toolStrip2);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Controls.Add(this.ribbonPage3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(776, 74);
+            this.tabPage3.Size = new System.Drawing.Size(777, 72);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "About";
             // 
-            // toolStrip2
+            // ribbonPage3
             // 
-            this.toolStrip2.BackColor = System.Drawing.SystemColors.Control;
-            this.toolStrip2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(48, 48);
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ribbonPage3.BackColor = System.Drawing.SystemColors.Control;
+            this.ribbonPage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ribbonPage3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.ribbonPage3.ImageScalingSize = new System.Drawing.Size(48, 48);
+            this.ribbonPage3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonAbout});
-            this.toolStrip2.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(770, 70);
-            this.toolStrip2.TabIndex = 0;
-            this.toolStrip2.Text = "toolStrip2";
+            this.ribbonPage3.Location = new System.Drawing.Point(3, 3);
+            this.ribbonPage3.Name = "ribbonPage3";
+            this.ribbonPage3.Size = new System.Drawing.Size(771, 70);
+            this.ribbonPage3.TabIndex = 0;
+            this.ribbonPage3.Text = "toolStrip2";
             // 
             // toolStripButtonAbout
             // 
@@ -180,20 +184,21 @@
             this.IP,
             this.Port,
             this.State});
-            listViewGroup1.Header = "ListViewGroup";
-            listViewGroup1.Name = "listViewGroup1";
-            listViewGroup2.Header = "ListViewGroup";
-            listViewGroup2.Name = "listViewGroup2";
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
+            listViewGroup3.Header = "ListViewGroup";
+            listViewGroup3.Name = "listViewGroup1";
+            listViewGroup4.Header = "ListViewGroup";
+            listViewGroup4.Name = "listViewGroup2";
             this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+            listViewGroup3,
+            listViewGroup4});
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
-            this.listView1.Location = new System.Drawing.Point(157, 68);
+            listViewItem4,
+            listViewItem5,
+            listViewItem6});
+            this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(187, 362);
+            this.listView1.Size = new System.Drawing.Size(345, 362);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -213,112 +218,117 @@
             this.State.Text = "State";
             this.State.Width = 76;
             // 
-            // splitContainerMain
+            // RibbonSplitContainer
             // 
-            this.splitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerMain.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerMain.Name = "splitContainerMain";
+            this.RibbonSplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RibbonSplitContainer.Location = new System.Drawing.Point(0, 100);
+            this.RibbonSplitContainer.Name = "RibbonSplitContainer";
             // 
-            // splitContainerMain.Panel1
+            // RibbonSplitContainer.Panel1
             // 
-            this.splitContainerMain.Panel1.Controls.Add(this.listView1);
+            this.RibbonSplitContainer.Panel1.Controls.Add(this.listView1);
             // 
-            // splitContainerMain.Panel2
+            // RibbonSplitContainer.Panel2
             // 
-            this.splitContainerMain.Panel2.Controls.Add(this.splitContainerRight);
-            this.splitContainerMain.Size = new System.Drawing.Size(784, 436);
-            this.splitContainerMain.SplitterDistance = 348;
-            this.splitContainerMain.TabIndex = 4;
+            this.RibbonSplitContainer.Panel2.Controls.Add(this.splitContainerRightPanel);
+            this.RibbonSplitContainer.Size = new System.Drawing.Size(784, 437);
+            this.RibbonSplitContainer.SplitterDistance = 345;
+            this.RibbonSplitContainer.TabIndex = 4;
             // 
-            // splitContainerRight
+            // splitContainerRightPanel
             // 
-            this.splitContainerRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerRight.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerRight.Name = "splitContainerRight";
+            this.splitContainerRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerRightPanel.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerRightPanel.Name = "splitContainerRightPanel";
             // 
-            // splitContainerRight.Panel1
+            // splitContainerRightPanel.Panel1
             // 
-            this.splitContainerRight.Panel1.Controls.Add(this.button1);
+            this.splitContainerRightPanel.Panel1.Controls.Add(this.button1);
             // 
-            // splitContainerRight.Panel2
+            // splitContainerRightPanel.Panel2
             // 
-            this.splitContainerRight.Panel2.Controls.Add(this.button2);
-            this.splitContainerRight.Size = new System.Drawing.Size(432, 436);
-            this.splitContainerRight.SplitterDistance = 192;
-            this.splitContainerRight.TabIndex = 0;
+            this.splitContainerRightPanel.Panel2.Controls.Add(this.button2);
+            this.splitContainerRightPanel.Size = new System.Drawing.Size(435, 437);
+            this.splitContainerRightPanel.SplitterDistance = 191;
+            this.splitContainerRightPanel.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(55, 125);
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(191, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(104, 114);
+            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button2.Location = new System.Drawing.Point(0, 0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(240, 23);
             this.button2.TabIndex = 0;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // splitContainer1
+            // ribbonPage2
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.ribbonPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.ribbonPage2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.ribbonPage2.ImageScalingSize = new System.Drawing.Size(48, 48);
+            this.ribbonPage2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton3});
+            this.ribbonPage2.Location = new System.Drawing.Point(3, 3);
+            this.ribbonPage2.Name = "ribbonPage2";
+            this.ribbonPage2.Size = new System.Drawing.Size(771, 70);
+            this.ribbonPage2.TabIndex = 1;
+            this.ribbonPage2.Text = "toolStrip4";
             // 
-            // splitContainer1.Panel1
+            // toolStripButton3
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.tabControlMain);
-            this.splitContainer1.Panel1MinSize = 0;
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainerMain);
-            this.splitContainer1.Panel2MinSize = 0;
-            this.splitContainer1.Size = new System.Drawing.Size(784, 540);
-            this.splitContainer1.SplitterDistance = 100;
-            this.splitContainer1.TabIndex = 6;
-            this.splitContainer1.TabStop = false;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(52, 67);
+            this.toolStripButton3.Text = "Home";
+            this.toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // WinFormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.RibbonTabContainer);
+            this.Controls.Add(this.RibbonSplitContainer);
             this.Controls.Add(this.statusStripMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WinFormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NetAid";
-            this.tabControlMain.ResumeLayout(false);
+            this.RibbonTabContainer.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.ribbonPage1.ResumeLayout(false);
+            this.ribbonPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
-            this.splitContainerMain.Panel1.ResumeLayout(false);
-            this.splitContainerMain.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
-            this.splitContainerMain.ResumeLayout(false);
-            this.splitContainerRight.Panel1.ResumeLayout(false);
-            this.splitContainerRight.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerRight)).EndInit();
-            this.splitContainerRight.ResumeLayout(false);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.ribbonPage3.ResumeLayout(false);
+            this.ribbonPage3.PerformLayout();
+            this.RibbonSplitContainer.Panel1.ResumeLayout(false);
+            this.RibbonSplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.RibbonSplitContainer)).EndInit();
+            this.RibbonSplitContainer.ResumeLayout(false);
+            this.splitContainerRightPanel.Panel1.ResumeLayout(false);
+            this.splitContainerRightPanel.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerRightPanel)).EndInit();
+            this.splitContainerRightPanel.ResumeLayout(false);
+            this.ribbonPage2.ResumeLayout(false);
+            this.ribbonPage2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,22 +337,23 @@
         #endregion
 
         private System.Windows.Forms.StatusStrip statusStripMain;
-        private System.Windows.Forms.TabControl tabControlMain;
+        private System.Windows.Forms.TabControl RibbonTabContainer;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip ribbonPage1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader IP;
         private System.Windows.Forms.ColumnHeader Port;
         private System.Windows.Forms.ColumnHeader State;
-        private System.Windows.Forms.SplitContainer splitContainerMain;
-        private System.Windows.Forms.SplitContainer splitContainerRight;
+        private System.Windows.Forms.SplitContainer RibbonSplitContainer;
+        private System.Windows.Forms.SplitContainer splitContainerRightPanel;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStrip ribbonPage3;
         private System.Windows.Forms.ToolStripButton toolStripButtonAbout;
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ToolStrip ribbonPage2;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
     }
 }
