@@ -57,6 +57,10 @@
     <Compile Include="Controls\XMLViewer.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Model\ClientModeInfo.cs" />
+    <Compile Include="Model\RemoteClient.cs" />
+    <Compile Include="Model\ServerModeInfo.cs" />
+    <Compile Include="Model\ServerModeLog.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinForms\WinFormAboutBox.cs">
