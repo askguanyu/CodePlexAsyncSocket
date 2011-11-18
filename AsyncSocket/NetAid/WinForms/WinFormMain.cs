@@ -15,5 +15,33 @@ namespace GY.NetAid.WinForms
         {
             InitializeComponent();
         }
+
+        private void tabPage1_DoubleClick(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void tabControl1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void tabControl1_DoubleClick(object sender, EventArgs e)
+        {
+            if (this.tabControl1.Height == 20)
+            {
+                this.tabControl1.Height = 100;
+            }
+            else
+            {
+                this.tabControl1.Height = 20;
+            }
+            
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
