@@ -24,7 +24,7 @@ namespace GY.NetAid
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new WinFormMain());
+            Application.Run(new WinFormRibbonMain());
         }
     }
 }

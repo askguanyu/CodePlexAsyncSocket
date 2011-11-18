@@ -17,9 +17,9 @@ namespace GY.NetAid.WinForms
     /// <summary>
     ///
     /// </summary>
-    public partial class WinFormMain : Form
+    public partial class WinFormRibbonMain : Form
     {
-        public WinFormMain()
+        public WinFormRibbonMain()
         {
             this.InitializeComponent();
             this.InitializeRibbonTabContainer();
