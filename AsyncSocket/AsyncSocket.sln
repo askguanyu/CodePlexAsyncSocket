@@ -5,9 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncSocket", "AsyncSocket\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncSocketTestWinForm", "AsyncSocketTestWinForm\AsyncSocketTestWinForm.csproj", "{C9F0497D-987B-4D8E-AC1C-9E1350DAB8CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetAid", "NetAid\NetAid.csproj", "{646BC18D-6339-43D1-9D73-C34F879819F3}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 4
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs06
 		SccLocalPath0 = .
@@ -17,6 +19,9 @@ Global
 		SccProjectUniqueName2 = AsyncSocketTestWinForm\\AsyncSocketTestWinForm.csproj
 		SccProjectName2 = AsyncSocketTestWinForm
 		SccLocalPath2 = AsyncSocketTestWinForm
+		SccProjectUniqueName3 = NetAid\\NetAid.csproj
+		SccProjectName3 = NetAid
+		SccLocalPath3 = NetAid
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +53,16 @@ Global
 		{C9F0497D-987B-4D8E-AC1C-9E1350DAB8CE}.Release|Mixed Platforms.Build.0 = Release|x86
 		{C9F0497D-987B-4D8E-AC1C-9E1350DAB8CE}.Release|x86.ActiveCfg = Release|x86
 		{C9F0497D-987B-4D8E-AC1C-9E1350DAB8CE}.Release|x86.Build.0 = Release|x86
+		{646BC18D-6339-43D1-9D73-C34F879819F3}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{646BC18D-6339-43D1-9D73-C34F879819F3}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{646BC18D-6339-43D1-9D73-C34F879819F3}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{646BC18D-6339-43D1-9D73-C34F879819F3}.Debug|x86.ActiveCfg = Debug|x86
+		{646BC18D-6339-43D1-9D73-C34F879819F3}.Debug|x86.Build.0 = Debug|x86
+		{646BC18D-6339-43D1-9D73-C34F879819F3}.Release|Any CPU.ActiveCfg = Release|x86
+		{646BC18D-6339-43D1-9D73-C34F879819F3}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{646BC18D-6339-43D1-9D73-C34F879819F3}.Release|Mixed Platforms.Build.0 = Release|x86
+		{646BC18D-6339-43D1-9D73-C34F879819F3}.Release|x86.ActiveCfg = Release|x86
+		{646BC18D-6339-43D1-9D73-C34F879819F3}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

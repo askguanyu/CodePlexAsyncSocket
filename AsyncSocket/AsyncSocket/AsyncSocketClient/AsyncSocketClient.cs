@@ -74,13 +74,16 @@ namespace AsyncSocket
             {
                 this._socketClient.UseOnlyOverlappedIO = useIOCP;
                 this._socketClient.BeginConnect(remoteEndPoint, new AsyncCallback(this.ProcessConnect), this._socketClient);
+                Debug.WriteLine(AsyncSocketClientConstants.ClientConnectSuccessfully);
             }
             catch (ObjectDisposedException e)
             {
+                Debug.WriteLine(string.Format(AsyncSocketClientConstants.ClientConnectExceptionStringFormat, e.Message));
                 this.OnDisconnected(new AsyncSocketClientDisconnectedEventArgs(this._socketClient));
             }
             catch (SocketException e)
             {
+                Debug.WriteLine(string.Format(AsyncSocketClientConstants.ClientConnectExceptionStringFormat, e.Message));
                 this.HandleSocketException(e);
             }
         }
@@ -106,13 +109,16 @@ namespace AsyncSocket
             try
             {
                 this._socketClient.BeginSend(data, 0, data.Length, SocketFlags.None, new AsyncCallback(this.ProcessSendFinished), this._socketClient);
+                Debug.WriteLine(string.Format(AsyncSocketClientConstants.ClientSendBytesStringFormat, data.Length));
             }
-            catch (ObjectDisposedException)
+            catch (ObjectDisposedException e)
             {
+                Debug.WriteLine(string.Format(AsyncSocketClientConstants.ClientSendExceptionStringFormat, e.Message));
                 this.OnDisconnected(new AsyncSocketClientDisconnectedEventArgs(this._socketClient));
             }
             catch (SocketException e)
             {
+                Debug.WriteLine(string.Format(AsyncSocketClientConstants.ClientSendExceptionStringFormat, e.Message));
                 this.HandleSocketException(e);
             }
         }
@@ -192,6 +198,7 @@ namespace AsyncSocket
             }
             catch (Exception e)
             {
+                Debug.WriteLine(string.Format(AsyncSocketClientConstants.ClientDisconnectExceptionStringFormat, e.Message));
             }
         }
 
@@ -381,7 +388,7 @@ namespace AsyncSocket
             }
             catch (Exception e)
             {
-                Debug.WriteLine("Debug: " + e.Message);
+                Debug.WriteLine(string.Format(AsyncSocketClientConstants.DebugStringFormat, e.Message));
             }
         }
 
@@ -396,6 +403,7 @@ namespace AsyncSocket
                 this.OnDisconnected(new AsyncSocketClientDisconnectedEventArgs(this._socketClient));
             }
 
+            Debug.WriteLine(string.Format(AsyncSocketClientConstants.DebugStringFormat, e.Message));
             this.OnErrorOccurred(new AsyncSocketClientErrorOccurredEventArgs(e));
         }
     }
