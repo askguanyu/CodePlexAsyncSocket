@@ -59,5 +59,12 @@ namespace GY.NetAid.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Icon network {
+            get {
+                object obj = ResourceManager.GetObject("network", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

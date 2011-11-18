@@ -204,7 +204,7 @@ namespace AsyncSocketTestWinForm
         private void buttonDebug_Click(object sender, EventArgs e)
         {
             AsyncSocketClient client = new AsyncSocketClient();
-            client.SendOnce("127.0.0.1", 9999, "hello".ToHexByte());
+            client.SendOnce("127.0.0.1", 9999, "123456789abcdef".ToHexByte());
         }
     }
 }
