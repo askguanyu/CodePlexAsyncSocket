@@ -23,25 +23,14 @@ namespace GY.NetAid.WinForms
 
         private void tabControl1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            
-        }
-
-        private void tabControl1_DoubleClick(object sender, EventArgs e)
-        {
-            if (this.tabControl1.Height == 20)
+            if (this.splitContainer1.SplitterDistance == 100)
             {
-                this.tabControl1.Height = 100;
+                this.splitContainer1.SplitterDistance = 22; 
             }
             else
             {
-                this.tabControl1.Height = 20;
+                this.splitContainer1.SplitterDistance = 100;
             }
-            
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
