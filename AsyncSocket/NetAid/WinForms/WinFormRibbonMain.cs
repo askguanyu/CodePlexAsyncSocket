@@ -30,7 +30,7 @@ namespace GY.NetAid.WinForms
 
         private const int RIBBON_EXPAND_HEIGHT = 100;
 
-        private const int FORM_BORDER_HEIGHT = 62;
+        private const int FORM_BORDER_HEIGHT = 60;
 
         private bool _isRibbonTabExpand;
 
@@ -56,16 +56,16 @@ namespace GY.NetAid.WinForms
             if (whetherCollapse)
             {
                 this.RibbonTabContainer.Height = RIBBON_COLLAPSE_HEIGHT;
-                this.RibbonSplitContainer.Location = new System.Drawing.Point(0, RIBBON_COLLAPSE_HEIGHT);
-                this.RibbonSplitContainer.Height = this.Height - RIBBON_COLLAPSE_HEIGHT - FORM_BORDER_HEIGHT;
+                this.RibbonPanel.Location = new System.Drawing.Point(0, RIBBON_COLLAPSE_HEIGHT);
+                this.RibbonPanel.Height = this.Height - RIBBON_COLLAPSE_HEIGHT - FORM_BORDER_HEIGHT;
                 this._isRibbonTabExpand = false;
                 this._isRibbonTabShow = false;
             }
             else
             {
                 this.RibbonTabContainer.Height = RIBBON_EXPAND_HEIGHT;
-                this.RibbonSplitContainer.Location = new System.Drawing.Point(0, RIBBON_EXPAND_HEIGHT);
-                this.RibbonSplitContainer.Height = this.Height - RIBBON_EXPAND_HEIGHT - FORM_BORDER_HEIGHT;
+                this.RibbonPanel.Location = new System.Drawing.Point(0, RIBBON_EXPAND_HEIGHT);
+                this.RibbonPanel.Height = this.Height - RIBBON_EXPAND_HEIGHT - FORM_BORDER_HEIGHT;
                 this._isRibbonTabExpand = true;
                 this._isRibbonTabShow = true;
             }

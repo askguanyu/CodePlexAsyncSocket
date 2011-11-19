@@ -40,11 +40,8 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.ribbonPage3 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonAbout = new System.Windows.Forms.ToolStripButton();
-            this.RibbonSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.splitContainerRightPanel = new System.Windows.Forms.SplitContainer();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.RibbonPanel = new System.Windows.Forms.Panel();
             this.statusStripMain.SuspendLayout();
             this.RibbonTabContainer.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -53,13 +50,6 @@
             this.ribbonPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.ribbonPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RibbonSplitContainer)).BeginInit();
-            this.RibbonSplitContainer.Panel2.SuspendLayout();
-            this.RibbonSplitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerRightPanel)).BeginInit();
-            this.splitContainerRightPanel.Panel1.SuspendLayout();
-            this.splitContainerRightPanel.Panel2.SuspendLayout();
-            this.splitContainerRightPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStripMain
@@ -194,73 +184,29 @@
             this.toolStripButtonAbout.Text = "About";
             this.toolStripButtonAbout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // RibbonSplitContainer
-            // 
-            this.RibbonSplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.RibbonSplitContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RibbonSplitContainer.Location = new System.Drawing.Point(0, 100);
-            this.RibbonSplitContainer.Name = "RibbonSplitContainer";
-            // 
-            // RibbonSplitContainer.Panel2
-            // 
-            this.RibbonSplitContainer.Panel2.Controls.Add(this.splitContainerRightPanel);
-            this.RibbonSplitContainer.Size = new System.Drawing.Size(784, 437);
-            this.RibbonSplitContainer.SplitterDistance = 345;
-            this.RibbonSplitContainer.TabIndex = 4;
-            // 
-            // splitContainerRightPanel
-            // 
-            this.splitContainerRightPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainerRightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerRightPanel.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerRightPanel.Name = "splitContainerRightPanel";
-            // 
-            // splitContainerRightPanel.Panel1
-            // 
-            this.splitContainerRightPanel.Panel1.Controls.Add(this.button2);
-            // 
-            // splitContainerRightPanel.Panel2
-            // 
-            this.splitContainerRightPanel.Panel2.Controls.Add(this.button1);
-            this.splitContainerRightPanel.Size = new System.Drawing.Size(435, 437);
-            this.splitContainerRightPanel.SplitterDistance = 209;
-            this.splitContainerRightPanel.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(220, 54);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button2.Location = new System.Drawing.Point(0, 387);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(207, 48);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
+            // RibbonPanel
+            // 
+            this.RibbonPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RibbonPanel.Location = new System.Drawing.Point(0, 100);
+            this.RibbonPanel.Name = "RibbonPanel";
+            this.RibbonPanel.Size = new System.Drawing.Size(784, 440);
+            this.RibbonPanel.TabIndex = 4;
+            // 
             // WinFormRibbonMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.RibbonPanel);
             this.Controls.Add(this.RibbonTabContainer);
-            this.Controls.Add(this.RibbonSplitContainer);
             this.Controls.Add(this.statusStripMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WinFormRibbonMain";
@@ -281,13 +227,6 @@
             this.tabPage3.PerformLayout();
             this.ribbonPage3.ResumeLayout(false);
             this.ribbonPage3.PerformLayout();
-            this.RibbonSplitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.RibbonSplitContainer)).EndInit();
-            this.RibbonSplitContainer.ResumeLayout(false);
-            this.splitContainerRightPanel.Panel1.ResumeLayout(false);
-            this.splitContainerRightPanel.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerRightPanel)).EndInit();
-            this.splitContainerRightPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -302,14 +241,11 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ToolStrip ribbonPage1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.SplitContainer RibbonSplitContainer;
-        private System.Windows.Forms.SplitContainer splitContainerRightPanel;
         private System.Windows.Forms.ToolStrip ribbonPage3;
         private System.Windows.Forms.ToolStripButton toolStripButtonAbout;
         private System.Windows.Forms.ToolStrip ribbonPage2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Panel RibbonPanel;
     }
 }
