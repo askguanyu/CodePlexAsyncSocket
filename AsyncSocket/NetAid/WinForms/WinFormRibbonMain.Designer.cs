@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WinFormRibbonMain));
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.RibbonTabContainer = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.ribbonPage1 = new System.Windows.Forms.ToolStrip();
@@ -40,7 +41,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.ribbonPage3 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonAbout = new System.Windows.Forms.ToolStripButton();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.RibbonPanel = new System.Windows.Forms.Panel();
             this.statusStripMain.SuspendLayout();
             this.RibbonTabContainer.SuspendLayout();
@@ -62,6 +62,12 @@
             this.statusStripMain.TabIndex = 2;
             this.statusStripMain.Text = "statusStripMain";
             // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
             // RibbonTabContainer
             // 
             this.RibbonTabContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -78,7 +84,6 @@
             this.RibbonTabContainer.TabIndex = 3;
             this.RibbonTabContainer.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.RibbonTabContainer_Selecting);
             this.RibbonTabContainer.Selected += new System.Windows.Forms.TabControlEventHandler(this.RibbonTabContainer_Selected);
-            this.RibbonTabContainer.Leave += new System.EventHandler(this.RibbonTabContainer_Leave);
             this.RibbonTabContainer.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RibbonTabContainer_MouseClick);
             this.RibbonTabContainer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.RibbonTabContainer_MouseDoubleClick);
             // 
@@ -183,12 +188,6 @@
             this.toolStripButtonAbout.Size = new System.Drawing.Size(52, 67);
             this.toolStripButtonAbout.Text = "About";
             this.toolStripButtonAbout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // RibbonPanel
             // 

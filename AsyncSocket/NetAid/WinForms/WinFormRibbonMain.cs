@@ -41,6 +41,7 @@ namespace GY.NetAid.WinForms
             this._isRibbonTabExpand = true;
             this._isRibbonTabShow = true;
             this.CollapseRibbonTabContainer(!this._isRibbonTabExpand);
+            this.RibbonTabContainer.LostFocus += this.HideRibbon;
             this.ribbonPage1.ItemClicked += this.HideRibbon;
             this.ribbonPage2.ItemClicked += this.HideRibbon;
             this.ribbonPage3.ItemClicked += this.HideRibbon;
@@ -103,12 +104,7 @@ namespace GY.NetAid.WinForms
             }
         }
 
-        private void RibbonTabContainer_Leave(object sender, EventArgs e)
-        {
-            this.HideRibbon(null, null);
-        }
-
-        private void HideRibbon(object sender, ToolStripItemClickedEventArgs e)
+        private void HideRibbon(object sender, EventArgs e)
         {
             if (!this._isRibbonTabExpand)
             {
