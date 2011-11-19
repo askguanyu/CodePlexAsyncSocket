@@ -64,22 +64,22 @@ namespace AsyncSocketTestWinForm
                 }
             });
 
-            //string data = Encoding.Default.GetString(e.ReceivedRawData);
+            string data = e.ReceivedRawData.ToHexString();
 
-            //this.Invoke((MethodInvoker)delegate
-            //{
-            //    try
-            //    {
-            //        richTextBox1.AppendText(string.Format("----ClientId: {0}, ip: {1}, port: {2}, received: {3}", e.ConnectionId.ToString(), e.EndPoint.Address.ToString(), e.EndPoint.Port.ToString(), data));
-            //        richTextBox1.AppendText(Environment.NewLine);
-            //        richTextBox1.ScrollToCaret();
-            //    }
-            //    catch
-            //    {
-            //    }
-            //});
+            this.Invoke((MethodInvoker)delegate
+            {
+                try
+                {
+                    richTextBox1.AppendText(string.Format("----ClientId: {0}, ip: {1}, port: {2}, received: {3}", e.ConnectionId.ToString(), e.EndPoint.Address.ToString(), e.EndPoint.Port.ToString(), data));
+                    richTextBox1.AppendText(Environment.NewLine);
+                    richTextBox1.ScrollToCaret();
+                }
+                catch
+                {
+                }
+            });
 
-            //ss.Send(e.ConnectionId, e.ReceivedRawData);
+            ss.Send(e.ConnectionId, e.ReceivedRawData);
         }
 
         void ss_Connected(object sender, AsyncSocketServerUserToken e)

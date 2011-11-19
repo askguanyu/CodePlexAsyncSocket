@@ -44,7 +44,7 @@ namespace AsyncSocket
             }
             else
             {
-                throw new ArgumentOutOfRangeException(data, string.Format("\"{0}\" is not a Hex String.", data));
+                throw new ArgumentException(string.Format("\"{0}\" is not a Hex String.", data));
             }
         }
 
@@ -56,21 +56,21 @@ namespace AsyncSocket
         /// <returns>Hex string</returns>
         public static string ToHexString(this byte[] data, bool addSpace = true)
         {
-            StringBuilder result = new StringBuilder();
+            StringBuilder result = new StringBuilder(data.Length * 2);
 
             if (addSpace)
             {
-                for (int i = 0; i < data.Length; i++)
+                foreach (byte hex in data)
                 {
-                    result.Append(Convert.ToString(data[i], 16).PadLeft(2, '0'));
+                    result.AppendFormat("{0:X2}", hex);
                     result.Append(" ");
                 }
             }
             else
             {
-                for (int i = 0; i < data.Length; i++)
+                foreach (byte hex in data)
                 {
-                    result.Append(Convert.ToString(data[i], 16).PadLeft(2, '0'));
+                    result.AppendFormat("{0:X2}", hex);
                 }
             }
 
