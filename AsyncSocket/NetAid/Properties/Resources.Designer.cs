@@ -60,6 +60,13 @@ namespace GY.NetAid.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap dividerArt {
+            get {
+                object obj = ResourceManager.GetObject("dividerArt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon network {
             get {
                 object obj = ResourceManager.GetObject("network", resourceCulture);

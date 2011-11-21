@@ -28,6 +28,9 @@ namespace GY.NetAid.Controls
 
     public class XMLViewer : System.Windows.Forms.RichTextBox
     {
+        public bool IsViewingXML { get; private set; }
+        public string LastText { get; private set; }
+
         private XMLViewerSettings settings;
         /// <summary>
         /// The format settings.
@@ -102,22 +105,48 @@ namespace GY.NetAid.Controls
 
                 xmlRtfContent.Append(rootRtfContent);
 
+                this.LastText = this.Text;
+
                 // Construct the completed Rtf, and set the Rtf property to this value.
                 this.Rtf = string.Format(rtfFormat, Settings.ToRtfFormatString(),
                     xmlRtfContent.ToString());
 
-
+                this.IsViewingXML = true;
             }
             catch (System.Xml.XmlException xmlException)
             {
-                throw new ApplicationException(
-                    "Please check the input Xml. Error:" + xmlException.Message,
-                    xmlException);
+                this.IsViewingXML = false;
+                this.LastText = this.Text;
+                throw new ApplicationException("Please check the input Xml. Error:" + xmlException.Message, xmlException);
             }
             catch
             {
+                this.IsViewingXML = false;
+                this.LastText = this.Text;
                 throw;
             }
+        }
+
+        public void ResetXMLText()
+        {
+            this.Rtf = string.Empty;
+            base.ResetText();
+            this.Text = this.LastText;
+        }
+
+        public void ResetPlainText()
+        {
+            string lastText = this.Text;
+            this.Rtf = string.Empty;
+            this.ResetText();
+            this.Text = lastText;
+        }
+
+        public override void ResetText()
+        {
+            base.ResetText();
+            this.IsViewingXML = false;
+            this.LastText = string.Empty;
         }
 
         // Get the Rtf of the xml element.
@@ -205,6 +234,17 @@ namespace GY.NetAid.Controls
 
             return string.Format(elementRtfFormat, attributesRtfContent,
                 childElementsRtfContent);
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // XMLViewer
+            // 
+            this.WordWrap = false;
+            this.ResumeLayout(false);
+
         }
     }
 

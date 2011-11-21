@@ -54,6 +54,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\LogPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LogPanel.Designer.cs">
+      <DependentUpon>LogPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ServerModePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ServerModePanel.Designer.cs">
+      <DependentUpon>ServerModePanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\XMLViewer.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -75,6 +87,15 @@
     <Compile Include="WinForms\WinFormRibbonMain.Designer.cs">
       <DependentUpon>WinFormRibbonMain.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\LogPanel.resx">
+      <DependentUpon>LogPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ServerModePanel.resx">
+      <DependentUpon>ServerModePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\XMLViewer.resx">
+      <DependentUpon>XMLViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -107,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="network.ico" />
+    <None Include="Resources\dividerArt.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
