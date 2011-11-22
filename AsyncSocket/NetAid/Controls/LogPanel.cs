@@ -35,7 +35,14 @@ namespace GY.NetAid.Controls
             }
             else
             {
-                this.LogDetailTextBox.ResetXMLText();
+                if (this.LogDetailTextBox.IsViewingXML)
+                {
+                    this.LogDetailTextBox.ResetXMLtoPlain();
+                }
+                else
+                {
+                    this.LogDetailTextBox.ResetPlainText();
+                }
             }
         }
     }

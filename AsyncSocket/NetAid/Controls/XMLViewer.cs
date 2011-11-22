@@ -127,7 +127,7 @@ namespace GY.NetAid.Controls
             }
         }
 
-        public void ResetXMLText()
+        public void ResetXMLtoPlain()
         {
             this.Rtf = string.Empty;
             base.ResetText();
