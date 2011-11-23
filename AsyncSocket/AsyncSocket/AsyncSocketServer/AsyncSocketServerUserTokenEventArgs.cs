@@ -12,7 +12,7 @@ namespace AsyncSocket
     /// <summary>
     /// This class is designed for use as the object to be assigned to the SocketAsyncEventArgs.UserToken property.
     /// </summary>
-    public class AsyncSocketServerUserToken : EventArgs
+    public class AsyncSocketServerUserTokenEventArgs : EventArgs
     {
         /// <summary>
         ///
@@ -22,13 +22,13 @@ namespace AsyncSocket
         /// <summary>
         /// Constructor of AsyncUserToken
         /// </summary>
-        public AsyncSocketServerUserToken() : this(null) { }
+        public AsyncSocketServerUserTokenEventArgs() : this(null) { }
 
         /// <summary>
         /// Constructor of AsyncUserToken
         /// </summary>
         /// <param name="socket">Socket context</param>
-        public AsyncSocketServerUserToken(Socket socket)
+        public AsyncSocketServerUserTokenEventArgs(Socket socket)
         {
             this.ReadEventArgs = new SocketAsyncEventArgs();
             this.ReadEventArgs.UserToken = this;

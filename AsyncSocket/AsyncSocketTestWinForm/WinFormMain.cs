@@ -33,7 +33,7 @@ namespace AsyncSocketTestWinForm
             });
         }
 
-        void ss_Disconnected(object sender, AsyncSocketServerUserToken e)
+        void ss_Disconnected(object sender, AsyncSocketServerUserTokenEventArgs e)
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -49,12 +49,12 @@ namespace AsyncSocketTestWinForm
             });
         }
 
-        void ss_DataSent(object sender, AsyncSocketServerUserToken e)
+        void ss_DataSent(object sender, AsyncSocketServerUserTokenEventArgs e)
         {
             //throw new NotImplementedException();
         }
 
-        void ss_DataReceived(object sender, AsyncSocketServerUserToken e)
+        void ss_DataReceived(object sender, AsyncSocketServerUserTokenEventArgs e)
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -82,7 +82,7 @@ namespace AsyncSocketTestWinForm
             ss.Send(e.ConnectionId, e.ReceivedRawData);
         }
 
-        void ss_Connected(object sender, AsyncSocketServerUserToken e)
+        void ss_Connected(object sender, AsyncSocketServerUserTokenEventArgs e)
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -111,10 +111,10 @@ namespace AsyncSocketTestWinForm
             if (!ss.IsListening)
             {
                 ss = new AsyncSocketServer(new IPEndPoint(IPAddress.Any, Convert.ToInt32(this.numericUpDown1.Value)), Convert.ToInt32(this.numericUpDown2.Value), Convert.ToInt32(this.numericUpDown3.Value));
-                ss.Connected += new EventHandler<AsyncSocketServerUserToken>(ss_Connected);
-                ss.DataReceived += new EventHandler<AsyncSocketServerUserToken>(ss_DataReceived);
-                ss.DataSent += new EventHandler<AsyncSocketServerUserToken>(ss_DataSent);
-                ss.Disconnected += new EventHandler<AsyncSocketServerUserToken>(ss_Disconnected);
+                ss.Connected += new EventHandler<AsyncSocketServerUserTokenEventArgs>(ss_Connected);
+                ss.DataReceived += new EventHandler<AsyncSocketServerUserTokenEventArgs>(ss_DataReceived);
+                ss.DataSent += new EventHandler<AsyncSocketServerUserTokenEventArgs>(ss_DataSent);
+                ss.Disconnected += new EventHandler<AsyncSocketServerUserTokenEventArgs>(ss_Disconnected);
                 ss.ErrorOccurred += new EventHandler<AsyncSocketServerErrorEventArgs>(ss_ErrorOccurred);
 
                 try

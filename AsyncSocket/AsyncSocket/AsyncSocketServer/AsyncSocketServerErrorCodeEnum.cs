@@ -10,9 +10,14 @@ namespace AsyncSocket
     /// </summary>
     public enum AsyncSocketServerErrorCodeEnum
     {
-        ServerStartFailure,
-        ServerAcceptFailure,
+        ServerStartException,
+        ServerStopException,
+        ServerConnectException,
+        ServerDisconnectException,
+        ServerAcceptException,
         ClientSocketNoExist,
-        ThrowSocketException
+        ThrowSocketException,
+        ServerSendBackException,
+        ServerReceiveException,
     };
 }
