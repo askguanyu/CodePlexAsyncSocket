@@ -25,7 +25,9 @@ namespace AsyncSocket
         /// <summary>
         ///
         /// </summary>
-        private Socket _socketClient = null;
+        private Socket _clientSocket = null;
+
+        private AsyncSocketUserTokenEventArgs _token;
 
         /// <summary>
         ///
@@ -45,22 +47,27 @@ namespace AsyncSocket
         /// <summary>
         ///
         /// </summary>
-        public event EventHandler<AsyncSocketClientConnectedEventArgs> Connected;
+        public event EventHandler<AsyncSocketUserTokenEventArgs> Connected;
 
         /// <summary>
         ///
         /// </summary>
-        public event EventHandler<AsyncSocketClientDisconnectedEventArgs> Disconnected;
+        public event EventHandler<AsyncSocketUserTokenEventArgs> Disconnected;
 
         /// <summary>
         ///
         /// </summary>
-        public event EventHandler<AsyncSocketClientDataReceivedEventArgs> DataReceived;
+        public event EventHandler<AsyncSocketErrorEventArgs> ErrorOccurred;
 
         /// <summary>
         ///
         /// </summary>
-        public event EventHandler<AsyncSocketClientErrorOccurredEventArgs> ErrorOccurred;
+        public event EventHandler<AsyncSocketUserTokenEventArgs> DataReceived;
+
+        /// <summary>
+        /// Client Data Sent Event
+        /// </summary>
+        public event EventHandler<AsyncSocketUserTokenEventArgs> DataSent;
 
         /// <summary>
         /// Connect to remote endpoint
@@ -69,17 +76,22 @@ namespace AsyncSocket
         /// <param name="useIOCP">Specifies whether the socket should only use Overlapped I/O mode.</param>
         public void Connect(IPEndPoint remoteEndPoint, bool useIOCP = true)
         {
-            this._socketClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            this._clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             try
             {
-                this._socketClient.UseOnlyOverlappedIO = useIOCP;
-                this._socketClient.BeginConnect(remoteEndPoint, new AsyncCallback(this.ProcessConnect), this._socketClient);
+                this._token = new AsyncSocketUserTokenEventArgs(this._clientSocket);
+                this._token.ConnectionId = Guid.NewGuid();
+                this._token.SetBuffer(this._token.ReadEventArgs.Buffer, this._token.ReadEventArgs.Offset);
+
+                this._clientSocket.UseOnlyOverlappedIO = useIOCP;
+                this._clientSocket.BeginConnect(remoteEndPoint, new AsyncCallback(this.ProcessConnect), this._clientSocket);
+
                 Debug.WriteLine(AsyncSocketClientConstants.ClientConnectSuccessfully);
             }
             catch (ObjectDisposedException e)
             {
                 Debug.WriteLine(string.Format(AsyncSocketClientConstants.ClientConnectExceptionStringFormat, e.Message));
-                this.OnDisconnected(new AsyncSocketClientDisconnectedEventArgs(this._socketClient));
+                this.OnDisconnected(new AsyncSocketUserTokenEventArgs(this._clientSocket));
             }
             catch (SocketException e)
             {
@@ -108,13 +120,16 @@ namespace AsyncSocket
         {
             try
             {
-                this._socketClient.BeginSend(data, 0, data.Length, SocketFlags.None, new AsyncCallback(this.ProcessSendFinished), this._socketClient);
+                this._clientSocket.BeginSend(data, 0, data.Length, SocketFlags.None, new AsyncCallback(this.ProcessSendFinished), this._clientSocket);
+                this._token.SetBuffer(data, 0);
+                this._token.SetBytesReceived(data.Length);
+                this.OnDataSent(this._token);
                 Debug.WriteLine(string.Format(AsyncSocketClientConstants.ClientSendBytesStringFormat, data.Length));
             }
             catch (ObjectDisposedException e)
             {
                 Debug.WriteLine(string.Format(AsyncSocketClientConstants.ClientSendExceptionStringFormat, e.Message));
-                this.OnDisconnected(new AsyncSocketClientDisconnectedEventArgs(this._socketClient));
+                this.OnDisconnected(new AsyncSocketUserTokenEventArgs(this._clientSocket));
             }
             catch (SocketException e)
             {
@@ -193,8 +208,9 @@ namespace AsyncSocket
         {
             try
             {
-                this._socketClient.Shutdown(SocketShutdown.Both);
-                this._socketClient.Close();
+                this._clientSocket.Shutdown(SocketShutdown.Both);
+                this._clientSocket.Close();
+                this.OnDisconnected(this._token);
             }
             catch (Exception e)
             {
@@ -215,10 +231,10 @@ namespace AsyncSocket
         ///
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnConnected(AsyncSocketClientConnectedEventArgs e)
+        protected virtual void OnConnected(AsyncSocketUserTokenEventArgs e)
         {
             // Copy a reference to the delegate field now into a temporary field for thread safety
-            EventHandler<AsyncSocketClientConnectedEventArgs> temp = Interlocked.CompareExchange(ref Connected, null, null);
+            EventHandler<AsyncSocketUserTokenEventArgs> temp = Interlocked.CompareExchange(ref Connected, null, null);
 
             if (temp != null)
             {
@@ -230,12 +246,12 @@ namespace AsyncSocket
         ///
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnDisconnected(AsyncSocketClientDisconnectedEventArgs e)
+        protected virtual void OnDisconnected(AsyncSocketUserTokenEventArgs e)
         {
             // Copy a reference to the delegate field now into a temporary field for thread safety
-            EventHandler<AsyncSocketClientDisconnectedEventArgs> temp = Interlocked.CompareExchange(ref Disconnected, null, null);
+            EventHandler<AsyncSocketUserTokenEventArgs> temp = Interlocked.CompareExchange(ref Disconnected, null, null);
 
-            if ((temp != null) && (e.SocketToken != null))
+            if ((temp != null) && (e.Socket != null))
             {
                 temp(this, e);
             }
@@ -245,10 +261,10 @@ namespace AsyncSocket
         ///
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnDataReceived(AsyncSocketClientDataReceivedEventArgs e)
+        protected virtual void OnDataReceived(AsyncSocketUserTokenEventArgs e)
         {
             // Copy a reference to the delegate field now into a temporary field for thread safety
-            EventHandler<AsyncSocketClientDataReceivedEventArgs> temp = Interlocked.CompareExchange(ref DataReceived, null, null);
+            EventHandler<AsyncSocketUserTokenEventArgs> temp = Interlocked.CompareExchange(ref DataReceived, null, null);
 
             if (temp != null)
             {
@@ -260,14 +276,29 @@ namespace AsyncSocket
         ///
         /// </summary>
         /// <param name="e"></param>
-        protected virtual void OnErrorOccurred(AsyncSocketClientErrorOccurredEventArgs e)
+        protected virtual void OnDataSent(AsyncSocketUserTokenEventArgs e)
         {
             // Copy a reference to the delegate field now into a temporary field for thread safety
-            EventHandler<AsyncSocketClientErrorOccurredEventArgs> temp = Interlocked.CompareExchange(ref ErrorOccurred, null, null);
+            EventHandler<AsyncSocketUserTokenEventArgs> temp = Interlocked.CompareExchange(ref DataSent, null, null);
 
             if (temp != null)
             {
                 temp(this, e);
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="e"></param>
+        protected virtual void OnErrorOccurred(object sender, AsyncSocketErrorEventArgs e)
+        {
+            // Copy a reference to the delegate field now into a temporary field for thread safety
+            EventHandler<AsyncSocketErrorEventArgs> temp = Interlocked.CompareExchange(ref ErrorOccurred, null, null);
+
+            if (temp != null)
+            {
+                temp(sender, e);
             }
         }
 
@@ -280,11 +311,11 @@ namespace AsyncSocket
             if (disposing)
             {
                 // dispose managed resources
-                if (this._socketClient != null)
+                if (this._clientSocket != null)
                 {
-                    this._socketClient.Shutdown(SocketShutdown.Both);
-                    this._socketClient.Close();
-                    this._socketClient.Dispose();
+                    this._clientSocket.Shutdown(SocketShutdown.Both);
+                    this._clientSocket.Close();
+                    this._clientSocket.Dispose();
                 }
             }
         }
@@ -299,12 +330,12 @@ namespace AsyncSocket
             try
             {
                 asyncState.EndConnect(asyncResult);
-                this.OnConnected(new AsyncSocketClientConnectedEventArgs(this._socketClient));
+                this.OnConnected(this._token);
                 this.ProcessWaitForData(asyncState);
             }
-            catch (ObjectDisposedException e)
+            catch (ObjectDisposedException)
             {
-                this.OnDisconnected(new AsyncSocketClientDisconnectedEventArgs(this._socketClient));
+                this.OnDisconnected(new AsyncSocketUserTokenEventArgs(this._clientSocket));
             }
             catch (SocketException e)
             {
@@ -322,9 +353,9 @@ namespace AsyncSocket
             {
                 socket.BeginReceive(this._dataBuffer, 0, this._bufferSize, SocketFlags.None, new AsyncCallback(this.ProcessIncomingData), socket);
             }
-            catch (ObjectDisposedException e)
+            catch (ObjectDisposedException)
             {
-                this.OnDisconnected(new AsyncSocketClientDisconnectedEventArgs(this._socketClient));
+                this.OnDisconnected(this._token);
             }
             catch (SocketException e)
             {
@@ -344,23 +375,20 @@ namespace AsyncSocket
                 int length = asyncState.EndReceive(asyncResult);
                 if (0 == length)
                 {
-                    this.OnDisconnected(new AsyncSocketClientDisconnectedEventArgs(this._socketClient));
+                    this.OnDisconnected(this._token);
                 }
                 else
                 {
-                    byte[] destinationArray = new byte[length];
-                    Array.Copy(this._dataBuffer, 0, destinationArray, 0, length);
-                    if (null != this.DataReceived)
-                    {
-                        this.DataReceived(this, new AsyncSocketClientDataReceivedEventArgs(this._socketClient, destinationArray));
-                    }
+                    this._token.SetBuffer(this._dataBuffer, 0);
+                    this._token.SetBytesReceived(length);
 
+                    this.OnDataReceived(this._token);
                     this.ProcessWaitForData(asyncState);
                 }
             }
-            catch (ObjectDisposedException e)
+            catch (ObjectDisposedException)
             {
-                this.OnDisconnected(new AsyncSocketClientDisconnectedEventArgs(this._socketClient));
+                this.OnDisconnected(this._token);
             }
             catch (SocketException e)
             {
@@ -380,7 +408,7 @@ namespace AsyncSocket
             }
             catch (ObjectDisposedException)
             {
-                this.OnDisconnected(new AsyncSocketClientDisconnectedEventArgs(this._socketClient));
+                this.OnDisconnected(this._token);
             }
             catch (SocketException e)
             {
@@ -400,11 +428,11 @@ namespace AsyncSocket
         {
             if (e.ErrorCode == (int)SocketError.ConnectionReset)
             {
-                this.OnDisconnected(new AsyncSocketClientDisconnectedEventArgs(this._socketClient));
+                this.OnDisconnected(this._token);
             }
 
             Debug.WriteLine(string.Format(AsyncSocketClientConstants.DebugStringFormat, e.Message));
-            this.OnErrorOccurred(new AsyncSocketClientErrorOccurredEventArgs(e));
+            this.OnErrorOccurred(this._token.Socket, new AsyncSocketErrorEventArgs(e.Message, e));
         }
     }
 }

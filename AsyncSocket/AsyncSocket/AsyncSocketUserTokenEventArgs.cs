@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="AsyncSocketServerUserToken.cs" company="GY Corporation">
+// <copyright file="AsyncSocketUserTokenEventArgs.cs" company="GY Corporation">
 //     Copyright (c) GY Corporation. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -12,7 +12,7 @@ namespace AsyncSocket
     /// <summary>
     /// This class is designed for use as the object to be assigned to the SocketAsyncEventArgs.UserToken property.
     /// </summary>
-    public class AsyncSocketServerUserTokenEventArgs : EventArgs
+    public class AsyncSocketUserTokenEventArgs : EventArgs
     {
         /// <summary>
         ///
@@ -22,13 +22,13 @@ namespace AsyncSocket
         /// <summary>
         /// Constructor of AsyncUserToken
         /// </summary>
-        public AsyncSocketServerUserTokenEventArgs() : this(null) { }
+        public AsyncSocketUserTokenEventArgs() : this(null) { }
 
         /// <summary>
         /// Constructor of AsyncUserToken
         /// </summary>
         /// <param name="socket">Socket context</param>
-        public AsyncSocketServerUserTokenEventArgs(Socket socket)
+        public AsyncSocketUserTokenEventArgs(Socket socket)
         {
             this.ReadEventArgs = new SocketAsyncEventArgs();
             this.ReadEventArgs.UserToken = this;
@@ -50,7 +50,7 @@ namespace AsyncSocket
         /// <summary>
         /// Gets length of received data bytes
         /// </summary>
-        public int BytesReceived
+        public int ReceivedBytesSize
         {
             get;
             private set;
@@ -81,8 +81,8 @@ namespace AsyncSocket
         {
             get
             {
-                byte[] data = new byte[this.BytesReceived];
-                Array.Copy(this.ReceivedBuffer, this.Offset, data, 0, this.BytesReceived);
+                byte[] data = new byte[this.ReceivedBytesSize];
+                Array.Copy(this.ReceivedBuffer, this.Offset, data, 0, this.ReceivedBytesSize);
                 return data;
             }
         }
@@ -140,7 +140,7 @@ namespace AsyncSocket
         /// <param name="bytesReceived">Bytes Received</param>
         public void SetBytesReceived(int bytesReceived)
         {
-            this.BytesReceived = bytesReceived;
+            this.ReceivedBytesSize = bytesReceived;
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace AsyncSocket
         {
             this.ReceivedBuffer = buffer;
             this.Offset = offset;
-            this.BytesReceived = 0;
+            this.ReceivedBytesSize = 0;
         }
     }
 }

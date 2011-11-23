@@ -23,7 +23,7 @@ namespace AsyncSocketTestWinForm
             ss = new AsyncSocketServer(new IPEndPoint(IPAddress.Any, Convert.ToInt32(this.numericUpDown1.Value)));
         }
 
-        void ss_ErrorOccurred(object sender, AsyncSocketServerErrorEventArgs e)
+        void ss_ErrorOccurred(object sender, AsyncSocketErrorEventArgs e)
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -33,7 +33,7 @@ namespace AsyncSocketTestWinForm
             });
         }
 
-        void ss_Disconnected(object sender, AsyncSocketServerUserTokenEventArgs e)
+        void ss_Disconnected(object sender, AsyncSocketUserTokenEventArgs e)
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -49,12 +49,12 @@ namespace AsyncSocketTestWinForm
             });
         }
 
-        void ss_DataSent(object sender, AsyncSocketServerUserTokenEventArgs e)
+        void ss_DataSent(object sender, AsyncSocketUserTokenEventArgs e)
         {
             //throw new NotImplementedException();
         }
 
-        void ss_DataReceived(object sender, AsyncSocketServerUserTokenEventArgs e)
+        void ss_DataReceived(object sender, AsyncSocketUserTokenEventArgs e)
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -82,7 +82,7 @@ namespace AsyncSocketTestWinForm
             ss.Send(e.ConnectionId, e.ReceivedRawData);
         }
 
-        void ss_Connected(object sender, AsyncSocketServerUserTokenEventArgs e)
+        void ss_Connected(object sender, AsyncSocketUserTokenEventArgs e)
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -111,11 +111,11 @@ namespace AsyncSocketTestWinForm
             if (!ss.IsListening)
             {
                 ss = new AsyncSocketServer(new IPEndPoint(IPAddress.Any, Convert.ToInt32(this.numericUpDown1.Value)), Convert.ToInt32(this.numericUpDown2.Value), Convert.ToInt32(this.numericUpDown3.Value));
-                ss.Connected += new EventHandler<AsyncSocketServerUserTokenEventArgs>(ss_Connected);
-                ss.DataReceived += new EventHandler<AsyncSocketServerUserTokenEventArgs>(ss_DataReceived);
-                ss.DataSent += new EventHandler<AsyncSocketServerUserTokenEventArgs>(ss_DataSent);
-                ss.Disconnected += new EventHandler<AsyncSocketServerUserTokenEventArgs>(ss_Disconnected);
-                ss.ErrorOccurred += new EventHandler<AsyncSocketServerErrorEventArgs>(ss_ErrorOccurred);
+                ss.Connected += new EventHandler<AsyncSocketUserTokenEventArgs>(ss_Connected);
+                ss.DataReceived += new EventHandler<AsyncSocketUserTokenEventArgs>(ss_DataReceived);
+                ss.DataSent += new EventHandler<AsyncSocketUserTokenEventArgs>(ss_DataSent);
+                ss.Disconnected += new EventHandler<AsyncSocketUserTokenEventArgs>(ss_Disconnected);
+                ss.ErrorOccurred += new EventHandler<AsyncSocketErrorEventArgs>(ss_ErrorOccurred);
 
                 try
                 {
@@ -204,7 +204,29 @@ namespace AsyncSocketTestWinForm
         private void buttonDebug_Click(object sender, EventArgs e)
         {
             AsyncSocketClient client = new AsyncSocketClient();
+            client.DataSent += new EventHandler<AsyncSocketUserTokenEventArgs>(client_DataSent);
+            client.DataReceived += new EventHandler<AsyncSocketUserTokenEventArgs>(client_DataReceived);
             client.SendOnce("127.0.0.1", 9999, "123456789abcdef".ToHexByte());
+        }
+
+        void client_DataReceived(object sender, AsyncSocketUserTokenEventArgs e)
+        {
+            this.Invoke((MethodInvoker)delegate
+            {
+                richTextBox1.AppendText("client_DataReceived"+string.Format(e.ReceivedRawData.ToHexString()));
+                richTextBox1.AppendText(Environment.NewLine);
+                richTextBox1.ScrollToCaret();
+            });
+        }
+
+        void client_DataSent(object sender, AsyncSocketUserTokenEventArgs e)
+        {
+            this.Invoke((MethodInvoker)delegate
+            {
+                richTextBox1.AppendText("client_DataSent"+e.ConnectionId.ToString()+ string.Format(e.ReceivedRawData.ToHexString()));
+                richTextBox1.AppendText(Environment.NewLine);
+                richTextBox1.ScrollToCaret();
+            });
         }
     }
 }

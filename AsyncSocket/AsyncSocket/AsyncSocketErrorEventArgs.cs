@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="AsyncSocketServerErrorEventArgs.cs" company="GY Corporation">
+// <copyright file="AsyncSocketErrorEventArgs.cs" company="GY Corporation">
 //     Copyright (c) GY Corporation. All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -10,12 +10,12 @@ namespace AsyncSocket
     /// <summary>
     /// Async Socket Error EventArgs Class
     /// </summary>
-    public class AsyncSocketServerErrorEventArgs : EventArgs
+    public class AsyncSocketErrorEventArgs : EventArgs
     {
         /// <summary>
         /// Constructor of AsyncSocketErrorEventArgs
         /// </summary>
-        public AsyncSocketServerErrorEventArgs() : this(string.Empty, null) { }
+        public AsyncSocketErrorEventArgs() : this(string.Empty, null) { }
 
         /// <summary>
         /// Constructor of AsyncSocketErrorEventArgs
@@ -23,7 +23,7 @@ namespace AsyncSocket
         /// <param name="message">Error Message</param>
         /// <param name="exception">Exception object</param>
         /// <param name="errorCode">AsyncSocketServerErrorCodeEnum</param>
-        public AsyncSocketServerErrorEventArgs(string message, Exception exception, AsyncSocketServerErrorCodeEnum errorCode = AsyncSocketServerErrorCodeEnum.ThrowSocketException)
+        public AsyncSocketErrorEventArgs(string message, Exception exception, AsyncSocketErrorCodeEnum errorCode = AsyncSocketErrorCodeEnum.ThrowSocketException)
         {
             this.Message = message;
             this.Exception = exception;
@@ -51,7 +51,7 @@ namespace AsyncSocket
         /// <summary>
         /// Gets or sets Error Code
         /// </summary>
-        public AsyncSocketServerErrorCodeEnum ErrorCode
+        public AsyncSocketErrorCodeEnum ErrorCode
         {
             get;
             set;
