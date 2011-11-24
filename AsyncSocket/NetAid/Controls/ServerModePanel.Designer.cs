@@ -32,6 +32,7 @@
             this.ServerPanelGroupBox = new System.Windows.Forms.GroupBox();
             this.ServerPanelSplitContainer = new System.Windows.Forms.SplitContainer();
             this.ServerInfoSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.sendPanel1 = new GY.NetAid.Controls.SendPanel();
             this.logPanel1 = new GY.NetAid.Controls.LogPanel();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerMain)).BeginInit();
             this.SplitContainerMain.Panel1.SuspendLayout();
@@ -40,6 +41,7 @@
             this.ServerPanelGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ServerPanelSplitContainer)).BeginInit();
             this.ServerPanelSplitContainer.Panel1.SuspendLayout();
+            this.ServerPanelSplitContainer.Panel2.SuspendLayout();
             this.ServerPanelSplitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ServerInfoSplitContainer)).BeginInit();
             this.ServerInfoSplitContainer.SuspendLayout();
@@ -83,6 +85,10 @@
             // ServerPanelSplitContainer.Panel1
             // 
             this.ServerPanelSplitContainer.Panel1.Controls.Add(this.ServerInfoSplitContainer);
+            // 
+            // ServerPanelSplitContainer.Panel2
+            // 
+            this.ServerPanelSplitContainer.Panel2.Controls.Add(this.sendPanel1);
             this.ServerPanelSplitContainer.Size = new System.Drawing.Size(314, 461);
             this.ServerPanelSplitContainer.SplitterDistance = 175;
             this.ServerPanelSplitContainer.TabIndex = 0;
@@ -95,6 +101,14 @@
             this.ServerInfoSplitContainer.Size = new System.Drawing.Size(314, 175);
             this.ServerInfoSplitContainer.SplitterDistance = 159;
             this.ServerInfoSplitContainer.TabIndex = 0;
+            // 
+            // sendPanel1
+            // 
+            this.sendPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sendPanel1.Location = new System.Drawing.Point(0, 0);
+            this.sendPanel1.Name = "sendPanel1";
+            this.sendPanel1.Size = new System.Drawing.Size(314, 282);
+            this.sendPanel1.TabIndex = 0;
             // 
             // logPanel1
             // 
@@ -117,6 +131,7 @@
             this.SplitContainerMain.ResumeLayout(false);
             this.ServerPanelGroupBox.ResumeLayout(false);
             this.ServerPanelSplitContainer.Panel1.ResumeLayout(false);
+            this.ServerPanelSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ServerPanelSplitContainer)).EndInit();
             this.ServerPanelSplitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ServerInfoSplitContainer)).EndInit();
@@ -132,5 +147,6 @@
         private System.Windows.Forms.SplitContainer ServerPanelSplitContainer;
         private System.Windows.Forms.SplitContainer ServerInfoSplitContainer;
         private LogPanel logPanel1;
+        public SendPanel sendPanel1;
     }
 }

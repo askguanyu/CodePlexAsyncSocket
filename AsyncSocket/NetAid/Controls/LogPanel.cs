@@ -18,7 +18,7 @@ namespace GY.NetAid.Controls
 
         private void WordWrapCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            this.LogDetailTextBox.WordWrap = this.WordWrapCheckBox.Checked;
+            this.XMLTextBox.WordWrap = this.WordWrapCheckBox.Checked;
         }
 
         private void ViewXMLCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -27,7 +27,7 @@ namespace GY.NetAid.Controls
             {
                 try
                 {
-                    this.LogDetailTextBox.Process(true);
+                    this.XMLTextBox.Process(true);
                 }
                 catch (Exception)
                 {
@@ -35,13 +35,13 @@ namespace GY.NetAid.Controls
             }
             else
             {
-                if (this.LogDetailTextBox.IsViewingXML)
+                if (this.XMLTextBox.IsViewingXML)
                 {
-                    this.LogDetailTextBox.ResetXMLtoPlain();
+                    this.XMLTextBox.ResetXMLtoPlain();
                 }
                 else
                 {
-                    this.LogDetailTextBox.ResetPlainText();
+                    this.XMLTextBox.ResetPlainText();
                 }
             }
         }
