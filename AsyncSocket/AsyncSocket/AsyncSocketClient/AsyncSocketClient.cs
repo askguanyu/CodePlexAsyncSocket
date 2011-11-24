@@ -27,6 +27,9 @@ namespace AsyncSocket
         /// </summary>
         private Socket _clientSocket = null;
 
+        /// <summary>
+        ///
+        /// </summary>
         private AsyncSocketUserTokenEventArgs _token;
 
         /// <summary>
@@ -96,7 +99,14 @@ namespace AsyncSocket
             catch (SocketException e)
             {
                 Debug.WriteLine(string.Format(AsyncSocketClientConstants.ClientConnectExceptionStringFormat, e.Message));
-                this.HandleSocketException(e);
+
+                if (e.ErrorCode == (int)SocketError.ConnectionReset)
+                {
+                    this.OnDisconnected(this._token);
+                }
+
+                Debug.WriteLine(string.Format(AsyncSocketClientConstants.DebugStringFormat, e.Message));
+                this.OnErrorOccurred(this._token.Socket, new AsyncSocketErrorEventArgs(e.Message, e, AsyncSocketErrorCodeEnum.ClientConnectException));
             }
         }
 
@@ -134,7 +144,14 @@ namespace AsyncSocket
             catch (SocketException e)
             {
                 Debug.WriteLine(string.Format(AsyncSocketClientConstants.ClientSendExceptionStringFormat, e.Message));
-                this.HandleSocketException(e);
+
+                if (e.ErrorCode == (int)SocketError.ConnectionReset)
+                {
+                    this.OnDisconnected(this._token);
+                }
+
+                Debug.WriteLine(string.Format(AsyncSocketClientConstants.DebugStringFormat, e.Message));
+                this.OnErrorOccurred(this._token.Socket, new AsyncSocketErrorEventArgs(e.Message, e, AsyncSocketErrorCodeEnum.ClientSendException));
             }
         }
 
@@ -215,6 +232,8 @@ namespace AsyncSocket
             catch (Exception e)
             {
                 Debug.WriteLine(string.Format(AsyncSocketClientConstants.ClientDisconnectExceptionStringFormat, e.Message));
+
+                this.OnErrorOccurred(this._token.Socket, new AsyncSocketErrorEventArgs(e.Message, e, AsyncSocketErrorCodeEnum.ClientDisconnectException));
             }
         }
 
@@ -392,7 +411,13 @@ namespace AsyncSocket
             }
             catch (SocketException e)
             {
-                this.HandleSocketException(e);
+                if (e.ErrorCode == (int)SocketError.ConnectionReset)
+                {
+                    this.OnDisconnected(this._token);
+                }
+
+                Debug.WriteLine(string.Format(AsyncSocketClientConstants.DebugStringFormat, e.Message));
+                this.OnErrorOccurred(this._token.Socket, new AsyncSocketErrorEventArgs(e.Message, e, AsyncSocketErrorCodeEnum.ClientReceiveException));
             }
         }
 
