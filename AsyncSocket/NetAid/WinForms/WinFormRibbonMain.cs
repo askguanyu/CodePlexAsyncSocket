@@ -116,5 +116,10 @@ namespace GY.NetAid.WinForms
             }
         } 
         #endregion
+
+        private void toolStripButtonAbout_Click(object sender, EventArgs e)
+        {
+            new WinFormAboutBox().ShowDialog();
+        }
     }
 }

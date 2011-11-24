@@ -28,14 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            GY.NetAid.Controls.XMLViewerSettings xmlViewerSettings1 = new GY.NetAid.Controls.XMLViewerSettings();
             this.SplitContainerMain = new System.Windows.Forms.SplitContainer();
             this.ServerPanelGroupBox = new System.Windows.Forms.GroupBox();
             this.ServerPanelSplitContainer = new System.Windows.Forms.SplitContainer();
             this.ServerInfoSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.ServerSendBackSettingsGroupBox = new System.Windows.Forms.GroupBox();
-            this.ServerSendBackButton = new System.Windows.Forms.Button();
-            this.ServerSendBackTextBox = new GY.NetAid.Controls.XMLViewer();
             this.logPanel1 = new GY.NetAid.Controls.LogPanel();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerMain)).BeginInit();
             this.SplitContainerMain.Panel1.SuspendLayout();
@@ -44,11 +40,9 @@
             this.ServerPanelGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ServerPanelSplitContainer)).BeginInit();
             this.ServerPanelSplitContainer.Panel1.SuspendLayout();
-            this.ServerPanelSplitContainer.Panel2.SuspendLayout();
             this.ServerPanelSplitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ServerInfoSplitContainer)).BeginInit();
             this.ServerInfoSplitContainer.SuspendLayout();
-            this.ServerSendBackSettingsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // SplitContainerMain
@@ -89,11 +83,6 @@
             // ServerPanelSplitContainer.Panel1
             // 
             this.ServerPanelSplitContainer.Panel1.Controls.Add(this.ServerInfoSplitContainer);
-            // 
-            // ServerPanelSplitContainer.Panel2
-            // 
-            this.ServerPanelSplitContainer.Panel2.Controls.Add(this.ServerSendBackTextBox);
-            this.ServerPanelSplitContainer.Panel2.Controls.Add(this.ServerSendBackSettingsGroupBox);
             this.ServerPanelSplitContainer.Size = new System.Drawing.Size(314, 461);
             this.ServerPanelSplitContainer.SplitterDistance = 175;
             this.ServerPanelSplitContainer.TabIndex = 0;
@@ -106,41 +95,6 @@
             this.ServerInfoSplitContainer.Size = new System.Drawing.Size(314, 175);
             this.ServerInfoSplitContainer.SplitterDistance = 159;
             this.ServerInfoSplitContainer.TabIndex = 0;
-            // 
-            // ServerSendBackSettingsGroupBox
-            // 
-            this.ServerSendBackSettingsGroupBox.Controls.Add(this.ServerSendBackButton);
-            this.ServerSendBackSettingsGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ServerSendBackSettingsGroupBox.Location = new System.Drawing.Point(0, 170);
-            this.ServerSendBackSettingsGroupBox.Name = "ServerSendBackSettingsGroupBox";
-            this.ServerSendBackSettingsGroupBox.Size = new System.Drawing.Size(314, 112);
-            this.ServerSendBackSettingsGroupBox.TabIndex = 1;
-            this.ServerSendBackSettingsGroupBox.TabStop = false;
-            // 
-            // ServerSendBackButton
-            // 
-            this.ServerSendBackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ServerSendBackButton.Location = new System.Drawing.Point(233, 85);
-            this.ServerSendBackButton.Name = "ServerSendBackButton";
-            this.ServerSendBackButton.Size = new System.Drawing.Size(75, 23);
-            this.ServerSendBackButton.TabIndex = 0;
-            this.ServerSendBackButton.Text = "Send";
-            this.ServerSendBackButton.UseVisualStyleBackColor = true;
-            // 
-            // ServerSendBackTextBox
-            // 
-            this.ServerSendBackTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ServerSendBackTextBox.Location = new System.Drawing.Point(0, 0);
-            this.ServerSendBackTextBox.Name = "ServerSendBackTextBox";
-            xmlViewerSettings1.AttributeKey = System.Drawing.Color.Red;
-            xmlViewerSettings1.AttributeValue = System.Drawing.Color.Blue;
-            xmlViewerSettings1.Element = System.Drawing.Color.DarkRed;
-            xmlViewerSettings1.Tag = System.Drawing.Color.Blue;
-            xmlViewerSettings1.Value = System.Drawing.Color.Black;
-            this.ServerSendBackTextBox.Settings = xmlViewerSettings1;
-            this.ServerSendBackTextBox.Size = new System.Drawing.Size(314, 170);
-            this.ServerSendBackTextBox.TabIndex = 0;
-            this.ServerSendBackTextBox.Text = "";
             // 
             // logPanel1
             // 
@@ -163,12 +117,10 @@
             this.SplitContainerMain.ResumeLayout(false);
             this.ServerPanelGroupBox.ResumeLayout(false);
             this.ServerPanelSplitContainer.Panel1.ResumeLayout(false);
-            this.ServerPanelSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ServerPanelSplitContainer)).EndInit();
             this.ServerPanelSplitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ServerInfoSplitContainer)).EndInit();
             this.ServerInfoSplitContainer.ResumeLayout(false);
-            this.ServerSendBackSettingsGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -179,9 +131,6 @@
         private System.Windows.Forms.GroupBox ServerPanelGroupBox;
         private System.Windows.Forms.SplitContainer ServerPanelSplitContainer;
         private System.Windows.Forms.SplitContainer ServerInfoSplitContainer;
-        private XMLViewer ServerSendBackTextBox;
-        private System.Windows.Forms.GroupBox ServerSendBackSettingsGroupBox;
-        private System.Windows.Forms.Button ServerSendBackButton;
         private LogPanel logPanel1;
     }
 }

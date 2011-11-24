@@ -42,6 +42,7 @@
             this.ribbonPage3 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonAbout = new System.Windows.Forms.ToolStripButton();
             this.RibbonPanel = new System.Windows.Forms.Panel();
+            this.serverModePanel1 = new GY.NetAid.Controls.ServerModePanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -59,7 +60,6 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.serverModePanel1 = new GY.NetAid.Controls.ServerModePanel();
             this.statusStripMain.SuspendLayout();
             this.RibbonTabContainer.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -227,6 +227,7 @@
             this.toolStripButtonAbout.Size = new System.Drawing.Size(52, 67);
             this.toolStripButtonAbout.Text = "About";
             this.toolStripButtonAbout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonAbout.Click += new System.EventHandler(this.toolStripButtonAbout_Click);
             // 
             // RibbonPanel
             // 
@@ -240,6 +241,14 @@
             this.RibbonPanel.Name = "RibbonPanel";
             this.RibbonPanel.Size = new System.Drawing.Size(784, 440);
             this.RibbonPanel.TabIndex = 4;
+            // 
+            // serverModePanel1
+            // 
+            this.serverModePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.serverModePanel1.Location = new System.Drawing.Point(0, 0);
+            this.serverModePanel1.Name = "serverModePanel1";
+            this.serverModePanel1.Size = new System.Drawing.Size(784, 440);
+            this.serverModePanel1.TabIndex = 2;
             // 
             // panel1
             // 
@@ -415,7 +424,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(396, 119);
+            this.tabPage5.Size = new System.Drawing.Size(195, 38);
             this.tabPage5.TabIndex = 1;
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -436,14 +445,6 @@
             this.panel2.Size = new System.Drawing.Size(457, 267);
             this.panel2.TabIndex = 1;
             this.panel2.Visible = false;
-            // 
-            // serverModePanel1
-            // 
-            this.serverModePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.serverModePanel1.Location = new System.Drawing.Point(0, 0);
-            this.serverModePanel1.Name = "serverModePanel1";
-            this.serverModePanel1.Size = new System.Drawing.Size(784, 440);
-            this.serverModePanel1.TabIndex = 2;
             // 
             // WinFormRibbonMain
             // 
