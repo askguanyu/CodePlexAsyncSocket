@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ListViewExtensions.cs" />
     <Compile Include="Controls\LogPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -34,7 +34,7 @@
             this.ServerInfoSplitContainer = new System.Windows.Forms.SplitContainer();
             this.SendTabControl = new System.Windows.Forms.TabControl();
             this.SendTabPage = new System.Windows.Forms.TabPage();
-            this.sendPanel = new GY.NetAid.Controls.SendPanel();
+            this.SendPanel = new GY.NetAid.Controls.SendPanel();
             this.logPanel = new GY.NetAid.Controls.LogPanel();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerMain)).BeginInit();
             this.SplitContainerMain.Panel1.SuspendLayout();
@@ -118,7 +118,7 @@
             // 
             // SendTabPage
             // 
-            this.SendTabPage.Controls.Add(this.sendPanel);
+            this.SendTabPage.Controls.Add(this.SendPanel);
             this.SendTabPage.Location = new System.Drawing.Point(4, 22);
             this.SendTabPage.Name = "SendTabPage";
             this.SendTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -127,13 +127,13 @@
             this.SendTabPage.Text = "Send Message";
             this.SendTabPage.UseVisualStyleBackColor = true;
             // 
-            // sendPanel
+            // SendPanel
             // 
-            this.sendPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sendPanel.Location = new System.Drawing.Point(3, 3);
-            this.sendPanel.Name = "sendPanel";
-            this.sendPanel.Size = new System.Drawing.Size(376, 250);
-            this.sendPanel.TabIndex = 0;
+            this.SendPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SendPanel.Location = new System.Drawing.Point(3, 3);
+            this.SendPanel.Name = "SendPanel";
+            this.SendPanel.Size = new System.Drawing.Size(376, 250);
+            this.SendPanel.TabIndex = 0;
             // 
             // logPanel
             // 
@@ -176,6 +176,6 @@
         private LogPanel logPanel;
         private System.Windows.Forms.TabControl SendTabControl;
         private System.Windows.Forms.TabPage SendTabPage;
-        private SendPanel sendPanel;
+        public SendPanel SendPanel;
     }
 }
