@@ -30,20 +30,20 @@
         {
             GY.NetAid.Controls.XMLViewerSettings xmlViewerSettings1 = new GY.NetAid.Controls.XMLViewerSettings();
             this.SendSettingsGroupBox = new System.Windows.Forms.GroupBox();
-            this.SendButton = new System.Windows.Forms.Button();
-            this.PingButton = new System.Windows.Forms.Button();
+            this.PortNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.GUIDTextBox = new System.Windows.Forms.TextBox();
             this.IPTextBox = new System.Windows.Forms.TextBox();
-            this.AutoSendCheckBox = new System.Windows.Forms.CheckBox();
-            this.HexCheckBox = new System.Windows.Forms.CheckBox();
-            this.ViewXMLCheckBox = new System.Windows.Forms.CheckBox();
-            this.WordWrapCheckBox = new System.Windows.Forms.CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.PortNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.SendButton = new System.Windows.Forms.Button();
+            this.PingButton = new System.Windows.Forms.Button();
+            this.HexCheckBox = new System.Windows.Forms.CheckBox();
+            this.ViewXMLCheckBox = new System.Windows.Forms.CheckBox();
+            this.WordWrapCheckBox = new System.Windows.Forms.CheckBox();
             this.AutoSendTimesNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.AutoSendCheckBox = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.XMLTextBox = new GY.NetAid.Controls.XMLViewer();
             this.SendSettingsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PortNumericUpDown)).BeginInit();
@@ -73,25 +73,28 @@
             this.SendSettingsGroupBox.TabIndex = 1;
             this.SendSettingsGroupBox.TabStop = false;
             // 
-            // SendButton
+            // PortNumericUpDown
             // 
-            this.SendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.SendButton.Location = new System.Drawing.Point(402, 76);
-            this.SendButton.Name = "SendButton";
-            this.SendButton.Size = new System.Drawing.Size(75, 23);
-            this.SendButton.TabIndex = 9;
-            this.SendButton.Text = "Send";
-            this.SendButton.UseVisualStyleBackColor = true;
-            // 
-            // PingButton
-            // 
-            this.PingButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.PingButton.Location = new System.Drawing.Point(321, 76);
-            this.PingButton.Name = "PingButton";
-            this.PingButton.Size = new System.Drawing.Size(75, 23);
-            this.PingButton.TabIndex = 8;
-            this.PingButton.Text = "Ping";
-            this.PingButton.UseVisualStyleBackColor = true;
+            this.PortNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.PortNumericUpDown.Location = new System.Drawing.Point(321, 55);
+            this.PortNumericUpDown.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.PortNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.PortNumericUpDown.Name = "PortNumericUpDown";
+            this.PortNumericUpDown.Size = new System.Drawing.Size(156, 20);
+            this.PortNumericUpDown.TabIndex = 14;
+            this.PortNumericUpDown.Value = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             // 
             // GUIDTextBox
             // 
@@ -111,17 +114,58 @@
             this.IPTextBox.TabIndex = 5;
             this.IPTextBox.Text = "127.0.0.1";
             // 
-            // AutoSendCheckBox
+            // label3
             // 
-            this.AutoSendCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AutoSendCheckBox.AutoSize = true;
-            this.AutoSendCheckBox.Location = new System.Drawing.Point(3, 80);
-            this.AutoSendCheckBox.Name = "AutoSendCheckBox";
-            this.AutoSendCheckBox.Size = new System.Drawing.Size(48, 17);
-            this.AutoSendCheckBox.TabIndex = 3;
-            this.AutoSendCheckBox.Text = "Auto";
-            this.AutoSendCheckBox.UseVisualStyleBackColor = true;
-            this.AutoSendCheckBox.CheckedChanged += new System.EventHandler(this.AutoSendCheckBox_CheckedChanged);
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(294, 58);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Port:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(303, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(20, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "IP:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(286, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(37, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "GUID:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // SendButton
+            // 
+            this.SendButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.SendButton.Location = new System.Drawing.Point(402, 76);
+            this.SendButton.Name = "SendButton";
+            this.SendButton.Size = new System.Drawing.Size(75, 23);
+            this.SendButton.TabIndex = 9;
+            this.SendButton.Text = "Send";
+            this.SendButton.UseVisualStyleBackColor = true;
+            // 
+            // PingButton
+            // 
+            this.PingButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.PingButton.Location = new System.Drawing.Point(321, 76);
+            this.PingButton.Name = "PingButton";
+            this.PingButton.Size = new System.Drawing.Size(75, 23);
+            this.PingButton.TabIndex = 8;
+            this.PingButton.Text = "Ping";
+            this.PingButton.UseVisualStyleBackColor = true;
             // 
             // HexCheckBox
             // 
@@ -158,73 +202,6 @@
             this.WordWrapCheckBox.UseVisualStyleBackColor = true;
             this.WordWrapCheckBox.CheckedChanged += new System.EventHandler(this.WordWrapCheckBox_CheckedChanged);
             // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(96, 81);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 13);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "/Sec";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(294, 58);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 13);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Port:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(303, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(20, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "IP:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(286, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "GUID:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // PortNumericUpDown
-            // 
-            this.PortNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.PortNumericUpDown.Location = new System.Drawing.Point(321, 55);
-            this.PortNumericUpDown.Maximum = new decimal(new int[] {
-            65535,
-            0,
-            0,
-            0});
-            this.PortNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.PortNumericUpDown.Name = "PortNumericUpDown";
-            this.PortNumericUpDown.Size = new System.Drawing.Size(156, 20);
-            this.PortNumericUpDown.TabIndex = 14;
-            this.PortNumericUpDown.Value = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            // 
             // AutoSendTimesNumericUpDown
             // 
             this.AutoSendTimesNumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -249,6 +226,29 @@
             0,
             0,
             0});
+            // 
+            // AutoSendCheckBox
+            // 
+            this.AutoSendCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.AutoSendCheckBox.AutoSize = true;
+            this.AutoSendCheckBox.Location = new System.Drawing.Point(3, 80);
+            this.AutoSendCheckBox.Name = "AutoSendCheckBox";
+            this.AutoSendCheckBox.Size = new System.Drawing.Size(48, 17);
+            this.AutoSendCheckBox.TabIndex = 3;
+            this.AutoSendCheckBox.Text = "Auto";
+            this.AutoSendCheckBox.UseVisualStyleBackColor = true;
+            this.AutoSendCheckBox.CheckedChanged += new System.EventHandler(this.AutoSendCheckBox_CheckedChanged);
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(96, 81);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "/Sec";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // XMLTextBox
             // 
@@ -286,10 +286,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox SendSettingsGroupBox;
-        private System.Windows.Forms.CheckBox HexCheckBox;
-        private System.Windows.Forms.CheckBox ViewXMLCheckBox;
-        private System.Windows.Forms.CheckBox WordWrapCheckBox;
-        private System.Windows.Forms.CheckBox AutoSendCheckBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -299,7 +295,11 @@
         public System.Windows.Forms.TextBox GUIDTextBox;
         public System.Windows.Forms.TextBox IPTextBox;
         public XMLViewer XMLTextBox;
-        private System.Windows.Forms.NumericUpDown PortNumericUpDown;
-        private System.Windows.Forms.NumericUpDown AutoSendTimesNumericUpDown;
+        public System.Windows.Forms.CheckBox HexCheckBox;
+        public System.Windows.Forms.CheckBox ViewXMLCheckBox;
+        public System.Windows.Forms.CheckBox WordWrapCheckBox;
+        public System.Windows.Forms.CheckBox AutoSendCheckBox;
+        public System.Windows.Forms.NumericUpDown PortNumericUpDown;
+        public System.Windows.Forms.NumericUpDown AutoSendTimesNumericUpDown;
     }
 }
