@@ -35,21 +35,21 @@
             this.LogGeneralPage = new System.Windows.Forms.TabPage();
             this.ReceivedPage = new System.Windows.Forms.TabPage();
             this.SentPage = new System.Windows.Forms.TabPage();
+            this.LogDetailTabControl = new System.Windows.Forms.TabControl();
+            this.LogDetailTabPage = new System.Windows.Forms.TabPage();
             this.LogDetailSettingsGroupBox = new System.Windows.Forms.GroupBox();
             this.ViewXMLCheckBox = new System.Windows.Forms.CheckBox();
             this.WordWrapCheckBox = new System.Windows.Forms.CheckBox();
             this.XMLTextBox = new GY.NetAid.Controls.XMLViewer();
-            this.LogDetailTabControl = new System.Windows.Forms.TabControl();
-            this.LogDetailTabPage = new System.Windows.Forms.TabPage();
             this.LogPanelGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerLogPanel)).BeginInit();
             this.SplitContainerLogPanel.Panel1.SuspendLayout();
             this.SplitContainerLogPanel.Panel2.SuspendLayout();
             this.SplitContainerLogPanel.SuspendLayout();
             this.LogPanelTabControl.SuspendLayout();
-            this.LogDetailSettingsGroupBox.SuspendLayout();
             this.LogDetailTabControl.SuspendLayout();
             this.LogDetailTabPage.SuspendLayout();
+            this.LogDetailSettingsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // LogPanelGroupBox
@@ -125,58 +125,6 @@
             this.SentPage.Text = "Sent";
             this.SentPage.UseVisualStyleBackColor = true;
             // 
-            // LogDetailSettingsGroupBox
-            // 
-            this.LogDetailSettingsGroupBox.Controls.Add(this.ViewXMLCheckBox);
-            this.LogDetailSettingsGroupBox.Controls.Add(this.WordWrapCheckBox);
-            this.LogDetailSettingsGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.LogDetailSettingsGroupBox.Location = new System.Drawing.Point(3, 253);
-            this.LogDetailSettingsGroupBox.Name = "LogDetailSettingsGroupBox";
-            this.LogDetailSettingsGroupBox.Size = new System.Drawing.Size(300, 36);
-            this.LogDetailSettingsGroupBox.TabIndex = 1;
-            this.LogDetailSettingsGroupBox.TabStop = false;
-            // 
-            // ViewXMLCheckBox
-            // 
-            this.ViewXMLCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ViewXMLCheckBox.AutoSize = true;
-            this.ViewXMLCheckBox.Location = new System.Drawing.Point(206, 13);
-            this.ViewXMLCheckBox.Name = "ViewXMLCheckBox";
-            this.ViewXMLCheckBox.Size = new System.Drawing.Size(88, 17);
-            this.ViewXMLCheckBox.TabIndex = 1;
-            this.ViewXMLCheckBox.Text = "View as XML";
-            this.ViewXMLCheckBox.UseVisualStyleBackColor = true;
-            this.ViewXMLCheckBox.CheckedChanged += new System.EventHandler(this.ViewXMLCheckBox_CheckedChanged);
-            // 
-            // WordWrapCheckBox
-            // 
-            this.WordWrapCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.WordWrapCheckBox.AutoSize = true;
-            this.WordWrapCheckBox.Location = new System.Drawing.Point(119, 13);
-            this.WordWrapCheckBox.Name = "WordWrapCheckBox";
-            this.WordWrapCheckBox.Size = new System.Drawing.Size(81, 17);
-            this.WordWrapCheckBox.TabIndex = 0;
-            this.WordWrapCheckBox.Text = "Word Wrap";
-            this.WordWrapCheckBox.UseVisualStyleBackColor = true;
-            this.WordWrapCheckBox.CheckedChanged += new System.EventHandler(this.WordWrapCheckBox_CheckedChanged);
-            // 
-            // XMLTextBox
-            // 
-            this.XMLTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.XMLTextBox.Location = new System.Drawing.Point(3, 3);
-            this.XMLTextBox.Name = "XMLTextBox";
-            xmlViewerSettings1.AttributeKey = System.Drawing.Color.Red;
-            xmlViewerSettings1.AttributeValue = System.Drawing.Color.Blue;
-            xmlViewerSettings1.Element = System.Drawing.Color.DarkRed;
-            xmlViewerSettings1.Tag = System.Drawing.Color.Blue;
-            xmlViewerSettings1.Value = System.Drawing.Color.Black;
-            this.XMLTextBox.Settings = xmlViewerSettings1;
-            this.XMLTextBox.Size = new System.Drawing.Size(300, 250);
-            this.XMLTextBox.TabIndex = 0;
-            this.XMLTextBox.Text = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><html><head><title>My home page</title></h" +
-    "ead><body bgcolor=\"000000\" text=\"ff0000\">Hello World!</body></html>\n";
-            this.XMLTextBox.WordWrap = false;
-            // 
             // LogDetailTabControl
             // 
             this.LogDetailTabControl.Controls.Add(this.LogDetailTabPage);
@@ -199,6 +147,58 @@
             this.LogDetailTabPage.Text = "Detail";
             this.LogDetailTabPage.UseVisualStyleBackColor = true;
             // 
+            // LogDetailSettingsGroupBox
+            // 
+            this.LogDetailSettingsGroupBox.Controls.Add(this.ViewXMLCheckBox);
+            this.LogDetailSettingsGroupBox.Controls.Add(this.WordWrapCheckBox);
+            this.LogDetailSettingsGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.LogDetailSettingsGroupBox.Location = new System.Drawing.Point(3, 259);
+            this.LogDetailSettingsGroupBox.Name = "LogDetailSettingsGroupBox";
+            this.LogDetailSettingsGroupBox.Size = new System.Drawing.Size(300, 30);
+            this.LogDetailSettingsGroupBox.TabIndex = 1;
+            this.LogDetailSettingsGroupBox.TabStop = false;
+            // 
+            // ViewXMLCheckBox
+            // 
+            this.ViewXMLCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ViewXMLCheckBox.AutoSize = true;
+            this.ViewXMLCheckBox.Location = new System.Drawing.Point(209, 10);
+            this.ViewXMLCheckBox.Name = "ViewXMLCheckBox";
+            this.ViewXMLCheckBox.Size = new System.Drawing.Size(88, 17);
+            this.ViewXMLCheckBox.TabIndex = 1;
+            this.ViewXMLCheckBox.Text = "View as XML";
+            this.ViewXMLCheckBox.UseVisualStyleBackColor = true;
+            this.ViewXMLCheckBox.CheckedChanged += new System.EventHandler(this.ViewXMLCheckBox_CheckedChanged);
+            // 
+            // WordWrapCheckBox
+            // 
+            this.WordWrapCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.WordWrapCheckBox.AutoSize = true;
+            this.WordWrapCheckBox.Location = new System.Drawing.Point(122, 10);
+            this.WordWrapCheckBox.Name = "WordWrapCheckBox";
+            this.WordWrapCheckBox.Size = new System.Drawing.Size(81, 17);
+            this.WordWrapCheckBox.TabIndex = 0;
+            this.WordWrapCheckBox.Text = "Word Wrap";
+            this.WordWrapCheckBox.UseVisualStyleBackColor = true;
+            this.WordWrapCheckBox.CheckedChanged += new System.EventHandler(this.WordWrapCheckBox_CheckedChanged);
+            // 
+            // XMLTextBox
+            // 
+            this.XMLTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.XMLTextBox.Location = new System.Drawing.Point(3, 3);
+            this.XMLTextBox.Name = "XMLTextBox";
+            xmlViewerSettings1.AttributeKey = System.Drawing.Color.Red;
+            xmlViewerSettings1.AttributeValue = System.Drawing.Color.Blue;
+            xmlViewerSettings1.Element = System.Drawing.Color.DarkRed;
+            xmlViewerSettings1.Tag = System.Drawing.Color.Blue;
+            xmlViewerSettings1.Value = System.Drawing.Color.Black;
+            this.XMLTextBox.Settings = xmlViewerSettings1;
+            this.XMLTextBox.Size = new System.Drawing.Size(300, 256);
+            this.XMLTextBox.TabIndex = 0;
+            this.XMLTextBox.Text = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><html><head><title>My home page</title></h" +
+    "ead><body bgcolor=\"000000\" text=\"ff0000\">Hello World!</body></html>\n";
+            this.XMLTextBox.WordWrap = false;
+            // 
             // LogPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -212,10 +212,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerLogPanel)).EndInit();
             this.SplitContainerLogPanel.ResumeLayout(false);
             this.LogPanelTabControl.ResumeLayout(false);
-            this.LogDetailSettingsGroupBox.ResumeLayout(false);
-            this.LogDetailSettingsGroupBox.PerformLayout();
             this.LogDetailTabControl.ResumeLayout(false);
             this.LogDetailTabPage.ResumeLayout(false);
+            this.LogDetailSettingsGroupBox.ResumeLayout(false);
+            this.LogDetailSettingsGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
