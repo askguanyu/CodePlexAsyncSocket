@@ -72,7 +72,7 @@ namespace GY.NetAid.Controls
                 // The Rtf contains 2 parts, header and content. The colortbl is a part of
                 // the header, and the {1} will be replaced with the content.
                 string rtfFormat = @"{{\rtf1\ansi\ansicpg1252\deff0\deflang1033\deflangfe2052
-{{\fonttbl{{\f0\fnil Courier New;}}}}
+{{\fonttbl{{\f0\fnil Fixedsys;}}}}
 {{\colortbl ;{0}}}
 \viewkind4\uc1\pard\lang1033\f0 
 {1}}}";
@@ -152,7 +152,6 @@ namespace GY.NetAid.Controls
         // Get the Rtf of the xml element.
         private string ProcessElement(XElement element, int level)
         {
-
             // This viewer does not support the Xml file that has Namespace.
             if (!string.IsNullOrEmpty(element.Name.Namespace.NamespaceName))
             {

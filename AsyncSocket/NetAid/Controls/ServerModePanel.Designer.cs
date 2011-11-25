@@ -32,8 +32,10 @@
             this.ServerPanelGroupBox = new System.Windows.Forms.GroupBox();
             this.ServerPanelSplitContainer = new System.Windows.Forms.SplitContainer();
             this.ServerInfoSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.sendPanel1 = new GY.NetAid.Controls.SendPanel();
             this.logPanel1 = new GY.NetAid.Controls.LogPanel();
+            this.SendTabControl = new System.Windows.Forms.TabControl();
+            this.SendTabPage = new System.Windows.Forms.TabPage();
+            this.sendPanel = new GY.NetAid.Controls.SendPanel();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerMain)).BeginInit();
             this.SplitContainerMain.Panel1.SuspendLayout();
             this.SplitContainerMain.Panel2.SuspendLayout();
@@ -45,6 +47,8 @@
             this.ServerPanelSplitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ServerInfoSplitContainer)).BeginInit();
             this.ServerInfoSplitContainer.SuspendLayout();
+            this.SendTabControl.SuspendLayout();
+            this.SendTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // SplitContainerMain
@@ -88,7 +92,7 @@
             // 
             // ServerPanelSplitContainer.Panel2
             // 
-            this.ServerPanelSplitContainer.Panel2.Controls.Add(this.sendPanel1);
+            this.ServerPanelSplitContainer.Panel2.Controls.Add(this.SendTabControl);
             this.ServerPanelSplitContainer.Size = new System.Drawing.Size(314, 461);
             this.ServerPanelSplitContainer.SplitterDistance = 175;
             this.ServerPanelSplitContainer.TabIndex = 0;
@@ -102,14 +106,6 @@
             this.ServerInfoSplitContainer.SplitterDistance = 159;
             this.ServerInfoSplitContainer.TabIndex = 0;
             // 
-            // sendPanel1
-            // 
-            this.sendPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sendPanel1.Location = new System.Drawing.Point(0, 0);
-            this.sendPanel1.Name = "sendPanel1";
-            this.sendPanel1.Size = new System.Drawing.Size(314, 282);
-            this.sendPanel1.TabIndex = 0;
-            // 
             // logPanel1
             // 
             this.logPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -117,6 +113,35 @@
             this.logPanel1.Name = "logPanel1";
             this.logPanel1.Size = new System.Drawing.Size(316, 480);
             this.logPanel1.TabIndex = 0;
+            // 
+            // SendTabControl
+            // 
+            this.SendTabControl.Controls.Add(this.SendTabPage);
+            this.SendTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SendTabControl.Location = new System.Drawing.Point(0, 0);
+            this.SendTabControl.Name = "SendTabControl";
+            this.SendTabControl.SelectedIndex = 0;
+            this.SendTabControl.Size = new System.Drawing.Size(314, 282);
+            this.SendTabControl.TabIndex = 0;
+            // 
+            // SendTabPage
+            // 
+            this.SendTabPage.Controls.Add(this.sendPanel);
+            this.SendTabPage.Location = new System.Drawing.Point(4, 22);
+            this.SendTabPage.Name = "SendTabPage";
+            this.SendTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.SendTabPage.Size = new System.Drawing.Size(306, 256);
+            this.SendTabPage.TabIndex = 0;
+            this.SendTabPage.Text = "Send Message";
+            this.SendTabPage.UseVisualStyleBackColor = true;
+            // 
+            // sendPanel
+            // 
+            this.sendPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sendPanel.Location = new System.Drawing.Point(3, 3);
+            this.sendPanel.Name = "sendPanel";
+            this.sendPanel.Size = new System.Drawing.Size(300, 250);
+            this.sendPanel.TabIndex = 0;
             // 
             // ServerModePanel
             // 
@@ -136,6 +161,8 @@
             this.ServerPanelSplitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ServerInfoSplitContainer)).EndInit();
             this.ServerInfoSplitContainer.ResumeLayout(false);
+            this.SendTabControl.ResumeLayout(false);
+            this.SendTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -147,6 +174,8 @@
         private System.Windows.Forms.SplitContainer ServerPanelSplitContainer;
         private System.Windows.Forms.SplitContainer ServerInfoSplitContainer;
         private LogPanel logPanel1;
-        public SendPanel sendPanel1;
+        private System.Windows.Forms.TabControl SendTabControl;
+        private System.Windows.Forms.TabPage SendTabPage;
+        private SendPanel sendPanel;
     }
 }

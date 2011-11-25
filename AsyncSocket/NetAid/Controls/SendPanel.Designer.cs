@@ -35,9 +35,9 @@
             this.HexCheckBox = new System.Windows.Forms.CheckBox();
             this.AutoSendCheckBox = new System.Windows.Forms.CheckBox();
             this.AutoSendTimesTextBox = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.IPTextBox = new System.Windows.Forms.TextBox();
+            this.PortTextBox = new System.Windows.Forms.TextBox();
+            this.GUIDTextBox = new System.Windows.Forms.TextBox();
             this.PingButton = new System.Windows.Forms.Button();
             this.SendButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -55,9 +55,9 @@
             this.SendSettingsGroupBox.Controls.Add(this.label1);
             this.SendSettingsGroupBox.Controls.Add(this.SendButton);
             this.SendSettingsGroupBox.Controls.Add(this.PingButton);
-            this.SendSettingsGroupBox.Controls.Add(this.textBox4);
-            this.SendSettingsGroupBox.Controls.Add(this.textBox3);
-            this.SendSettingsGroupBox.Controls.Add(this.textBox2);
+            this.SendSettingsGroupBox.Controls.Add(this.GUIDTextBox);
+            this.SendSettingsGroupBox.Controls.Add(this.PortTextBox);
+            this.SendSettingsGroupBox.Controls.Add(this.IPTextBox);
             this.SendSettingsGroupBox.Controls.Add(this.AutoSendTimesTextBox);
             this.SendSettingsGroupBox.Controls.Add(this.AutoSendCheckBox);
             this.SendSettingsGroupBox.Controls.Add(this.HexCheckBox);
@@ -129,30 +129,30 @@
             this.AutoSendTimesTextBox.Text = "1";
             this.AutoSendTimesTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox2
+            // IPTextBox
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(295, 33);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(179, 20);
-            this.textBox2.TabIndex = 5;
+            this.IPTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.IPTextBox.Location = new System.Drawing.Point(295, 33);
+            this.IPTextBox.Name = "IPTextBox";
+            this.IPTextBox.Size = new System.Drawing.Size(179, 20);
+            this.IPTextBox.TabIndex = 5;
             // 
-            // textBox3
+            // PortTextBox
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(295, 58);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(179, 20);
-            this.textBox3.TabIndex = 6;
+            this.PortTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.PortTextBox.Location = new System.Drawing.Point(295, 58);
+            this.PortTextBox.Name = "PortTextBox";
+            this.PortTextBox.Size = new System.Drawing.Size(179, 20);
+            this.PortTextBox.TabIndex = 6;
             // 
-            // textBox4
+            // GUIDTextBox
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(295, 8);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(179, 20);
-            this.textBox4.TabIndex = 7;
-            this.textBox4.WordWrap = false;
+            this.GUIDTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.GUIDTextBox.Location = new System.Drawing.Point(295, 8);
+            this.GUIDTextBox.Name = "GUIDTextBox";
+            this.GUIDTextBox.Size = new System.Drawing.Size(179, 20);
+            this.GUIDTextBox.TabIndex = 7;
+            this.GUIDTextBox.WordWrap = false;
             // 
             // PingButton
             // 
@@ -248,7 +248,6 @@
 
         #endregion
 
-        private XMLViewer XMLTextBox;
         private System.Windows.Forms.GroupBox SendSettingsGroupBox;
         private System.Windows.Forms.CheckBox HexCheckBox;
         private System.Windows.Forms.CheckBox ViewXMLCheckBox;
@@ -260,9 +259,10 @@
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.Button SendButton;
         public System.Windows.Forms.Button PingButton;
-        public System.Windows.Forms.TextBox textBox4;
-        public System.Windows.Forms.TextBox textBox3;
-        public System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.TextBox GUIDTextBox;
+        public System.Windows.Forms.TextBox PortTextBox;
+        public System.Windows.Forms.TextBox IPTextBox;
         public System.Windows.Forms.TextBox AutoSendTimesTextBox;
+        public XMLViewer XMLTextBox;
     }
 }

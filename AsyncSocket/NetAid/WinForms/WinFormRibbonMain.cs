@@ -23,12 +23,12 @@ namespace GY.NetAid.WinForms
         {
             this.InitializeComponent();
             this.InitializeRibbonTabContainer();
-            this.serverModePanel1.sendPanel1.SendButton.Click += new EventHandler(SendButton_Click);
+            //this.serverModePanel1.sendPanel1.SendButton.Click += new EventHandler(SendButton_Click);
         }
 
         void SendButton_Click(object sender, EventArgs e)
         {
-            this.serverModePanel1.sendPanel1.AutoSendTimesTextBox.Text = "3";
+            //this.serverModePanel1.sendPanel1.AutoSendTimesTextBox.Text = "3";
         }
 
         #region RibbonLogic
