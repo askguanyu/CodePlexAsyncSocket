@@ -37,10 +37,10 @@
             this.SentPage = new System.Windows.Forms.TabPage();
             this.LogDetailTabControl = new System.Windows.Forms.TabControl();
             this.LogDetailTabPage = new System.Windows.Forms.TabPage();
+            this.XMLTextBox = new GY.NetAid.Controls.XMLViewer();
             this.LogDetailSettingsGroupBox = new System.Windows.Forms.GroupBox();
             this.ViewXMLCheckBox = new System.Windows.Forms.CheckBox();
             this.WordWrapCheckBox = new System.Windows.Forms.CheckBox();
-            this.XMLTextBox = new GY.NetAid.Controls.XMLViewer();
             this.LogPanelGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerLogPanel)).BeginInit();
             this.SplitContainerLogPanel.Panel1.SuspendLayout();
@@ -78,7 +78,7 @@
             // 
             this.SplitContainerLogPanel.Panel2.Controls.Add(this.LogDetailTabControl);
             this.SplitContainerLogPanel.Size = new System.Drawing.Size(314, 461);
-            this.SplitContainerLogPanel.SplitterDistance = 139;
+            this.SplitContainerLogPanel.SplitterDistance = 100;
             this.SplitContainerLogPanel.TabIndex = 0;
             // 
             // LogPanelTabControl
@@ -91,7 +91,7 @@
             this.LogPanelTabControl.Location = new System.Drawing.Point(0, 0);
             this.LogPanelTabControl.Name = "LogPanelTabControl";
             this.LogPanelTabControl.SelectedIndex = 0;
-            this.LogPanelTabControl.Size = new System.Drawing.Size(314, 139);
+            this.LogPanelTabControl.Size = new System.Drawing.Size(314, 100);
             this.LogPanelTabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.LogPanelTabControl.TabIndex = 0;
             // 
@@ -100,7 +100,7 @@
             this.LogGeneralPage.Location = new System.Drawing.Point(4, 22);
             this.LogGeneralPage.Name = "LogGeneralPage";
             this.LogGeneralPage.Padding = new System.Windows.Forms.Padding(3);
-            this.LogGeneralPage.Size = new System.Drawing.Size(306, 113);
+            this.LogGeneralPage.Size = new System.Drawing.Size(306, 74);
             this.LogGeneralPage.TabIndex = 0;
             this.LogGeneralPage.Text = "Log";
             this.LogGeneralPage.UseVisualStyleBackColor = true;
@@ -132,7 +132,7 @@
             this.LogDetailTabControl.Location = new System.Drawing.Point(0, 0);
             this.LogDetailTabControl.Name = "LogDetailTabControl";
             this.LogDetailTabControl.SelectedIndex = 0;
-            this.LogDetailTabControl.Size = new System.Drawing.Size(314, 318);
+            this.LogDetailTabControl.Size = new System.Drawing.Size(314, 357);
             this.LogDetailTabControl.TabIndex = 2;
             // 
             // LogDetailTabPage
@@ -142,17 +142,34 @@
             this.LogDetailTabPage.Location = new System.Drawing.Point(4, 22);
             this.LogDetailTabPage.Name = "LogDetailTabPage";
             this.LogDetailTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.LogDetailTabPage.Size = new System.Drawing.Size(306, 292);
+            this.LogDetailTabPage.Size = new System.Drawing.Size(306, 331);
             this.LogDetailTabPage.TabIndex = 0;
             this.LogDetailTabPage.Text = "Detail";
             this.LogDetailTabPage.UseVisualStyleBackColor = true;
+            // 
+            // XMLTextBox
+            // 
+            this.XMLTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.XMLTextBox.Location = new System.Drawing.Point(3, 3);
+            this.XMLTextBox.Name = "XMLTextBox";
+            xmlViewerSettings1.AttributeKey = System.Drawing.Color.Red;
+            xmlViewerSettings1.AttributeValue = System.Drawing.Color.Blue;
+            xmlViewerSettings1.Element = System.Drawing.Color.DarkRed;
+            xmlViewerSettings1.Tag = System.Drawing.Color.Blue;
+            xmlViewerSettings1.Value = System.Drawing.Color.Black;
+            this.XMLTextBox.Settings = xmlViewerSettings1;
+            this.XMLTextBox.Size = new System.Drawing.Size(300, 295);
+            this.XMLTextBox.TabIndex = 0;
+            this.XMLTextBox.Text = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><html><head><title>My home page</title></h" +
+    "ead><body bgcolor=\"000000\" text=\"ff0000\">Hello World!</body></html>\n";
+            this.XMLTextBox.WordWrap = false;
             // 
             // LogDetailSettingsGroupBox
             // 
             this.LogDetailSettingsGroupBox.Controls.Add(this.ViewXMLCheckBox);
             this.LogDetailSettingsGroupBox.Controls.Add(this.WordWrapCheckBox);
             this.LogDetailSettingsGroupBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.LogDetailSettingsGroupBox.Location = new System.Drawing.Point(3, 259);
+            this.LogDetailSettingsGroupBox.Location = new System.Drawing.Point(3, 298);
             this.LogDetailSettingsGroupBox.Name = "LogDetailSettingsGroupBox";
             this.LogDetailSettingsGroupBox.Size = new System.Drawing.Size(300, 30);
             this.LogDetailSettingsGroupBox.TabIndex = 1;
@@ -181,23 +198,6 @@
             this.WordWrapCheckBox.Text = "Word Wrap";
             this.WordWrapCheckBox.UseVisualStyleBackColor = true;
             this.WordWrapCheckBox.CheckedChanged += new System.EventHandler(this.WordWrapCheckBox_CheckedChanged);
-            // 
-            // XMLTextBox
-            // 
-            this.XMLTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.XMLTextBox.Location = new System.Drawing.Point(3, 3);
-            this.XMLTextBox.Name = "XMLTextBox";
-            xmlViewerSettings1.AttributeKey = System.Drawing.Color.Red;
-            xmlViewerSettings1.AttributeValue = System.Drawing.Color.Blue;
-            xmlViewerSettings1.Element = System.Drawing.Color.DarkRed;
-            xmlViewerSettings1.Tag = System.Drawing.Color.Blue;
-            xmlViewerSettings1.Value = System.Drawing.Color.Black;
-            this.XMLTextBox.Settings = xmlViewerSettings1;
-            this.XMLTextBox.Size = new System.Drawing.Size(300, 256);
-            this.XMLTextBox.TabIndex = 0;
-            this.XMLTextBox.Text = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><html><head><title>My home page</title></h" +
-    "ead><body bgcolor=\"000000\" text=\"ff0000\">Hello World!</body></html>\n";
-            this.XMLTextBox.WordWrap = false;
             // 
             // LogPanel
             // 

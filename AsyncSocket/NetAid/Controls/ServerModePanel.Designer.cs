@@ -94,7 +94,7 @@
             // 
             this.ServerPanelSplitContainer.Panel2.Controls.Add(this.SendTabControl);
             this.ServerPanelSplitContainer.Size = new System.Drawing.Size(390, 461);
-            this.ServerPanelSplitContainer.SplitterDistance = 175;
+            this.ServerPanelSplitContainer.SplitterDistance = 228;
             this.ServerPanelSplitContainer.TabIndex = 0;
             // 
             // ServerInfoSplitContainer
@@ -102,7 +102,7 @@
             this.ServerInfoSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ServerInfoSplitContainer.Location = new System.Drawing.Point(0, 0);
             this.ServerInfoSplitContainer.Name = "ServerInfoSplitContainer";
-            this.ServerInfoSplitContainer.Size = new System.Drawing.Size(390, 175);
+            this.ServerInfoSplitContainer.Size = new System.Drawing.Size(390, 228);
             this.ServerInfoSplitContainer.SplitterDistance = 197;
             this.ServerInfoSplitContainer.TabIndex = 0;
             // 
@@ -113,7 +113,7 @@
             this.SendTabControl.Location = new System.Drawing.Point(0, 0);
             this.SendTabControl.Name = "SendTabControl";
             this.SendTabControl.SelectedIndex = 0;
-            this.SendTabControl.Size = new System.Drawing.Size(390, 282);
+            this.SendTabControl.Size = new System.Drawing.Size(390, 229);
             this.SendTabControl.TabIndex = 0;
             // 
             // SendTabPage
@@ -122,7 +122,7 @@
             this.SendTabPage.Location = new System.Drawing.Point(4, 22);
             this.SendTabPage.Name = "SendTabPage";
             this.SendTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SendTabPage.Size = new System.Drawing.Size(382, 256);
+            this.SendTabPage.Size = new System.Drawing.Size(382, 203);
             this.SendTabPage.TabIndex = 0;
             this.SendTabPage.Text = "Send Message";
             this.SendTabPage.UseVisualStyleBackColor = true;
@@ -132,7 +132,7 @@
             this.SendPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SendPanel.Location = new System.Drawing.Point(3, 3);
             this.SendPanel.Name = "SendPanel";
-            this.SendPanel.Size = new System.Drawing.Size(376, 250);
+            this.SendPanel.Size = new System.Drawing.Size(376, 197);
             this.SendPanel.TabIndex = 0;
             // 
             // logPanel
