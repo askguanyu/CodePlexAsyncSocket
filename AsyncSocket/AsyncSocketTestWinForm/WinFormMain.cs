@@ -228,5 +228,12 @@ namespace AsyncSocketTestWinForm
                 richTextBox1.ScrollToCaret();
             });
         }
+
+        private void buttonDebug2_Click(object sender, EventArgs e)
+        {
+            AsyncSocketClient client = new AsyncSocketClient();
+            client.Connect("127.0.0.1", (int)numericUpDown1.Value);
+            client.Send("hello", Encoding.Unicode);
+        }
     }
 }

@@ -48,7 +48,7 @@ namespace GY.NetAid.Controls
 
         private void AutoSendCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            this.AutoSendTimesTextBox.Enabled = this.AutoSendCheckBox.Checked;
+            this.AutoSendTimesNumericUpDown.Enabled = this.AutoSendCheckBox.Checked;
         }
     }
 }
